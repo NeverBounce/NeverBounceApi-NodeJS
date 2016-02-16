@@ -1,0 +1,26 @@
+{
+  "name": "neverbounce-api",
+  "version": "0.1.0",
+  "description": "An API wrapper for the NeverBounce API",
+  "main": "libs/neverbounce.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "email",
+    "email verification",
+    "email validation",
+    "email cleaning",
+    "verification",
+    "validation",
+    "cleaning"
+  ],
+  "author": "NeverBounce <support@neverbounce.com> (https://neverbounce.com)",
+  "contributers": [
+    "Mike Mollick <mike@neverbounce.com>"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^2.1.0"
+  }
+}
