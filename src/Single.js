@@ -80,7 +80,8 @@ module.exports = {
          */
         verify(email) {
             return this.request({path: '/v3/single'}, {email: email}).then(
-                (res) => Promise.resolve(new Result(res))
+                (res) => Promise.resolve(new Result(res)),
+                (e) => Promise.reject(e)
             )
         },
 

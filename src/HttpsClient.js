@@ -1,5 +1,6 @@
 var https = require('https');
 var qs = require('qs');
+var _Error = require('./Errors');
 
 var hasOwn = {}.hasOwnProperty;
 
@@ -37,12 +38,14 @@ HttpsClient.prototype = {
      * @param params
      */
     request(params, data) {
-        return this.getAccessToken().then((token) => {
-            data['access_token'] = token;
-            return this._request(params, data);
-        }).then((res) => {
-            return Promise.resolve(res);
-        })
+        return this.getAccessToken().then(
+            (token) => {
+                data['access_token'] = token;
+                return this._request(params, data);
+            }
+        ).then(
+            (res) => Promise.resolve(res)
+        ).catch((e) => Promise.reject(e))
     },
 
     /**
@@ -61,10 +64,25 @@ HttpsClient.prototype = {
 
             var req = https.request(opts, (res) => {
                 res.on('data', (chunk) => {
-                    if(res.statusCode !== 200)
-                        reject(chunk.toString('utf8'));
+                    //if(res.statusCode !== 200)
+                    //    throw new Error(chunk.toString('utf8'));
+                        //reject(chunk.toString('utf8'));
+                    var parsed = JSON.parse(chunk.toString('utf8'));
 
-                    resolve(JSON.parse(chunk.toString('utf8')))
+                    if(parsed === undefined)
+                        throw new _Error(
+                            _Error.ResponseError,
+                            "The response from NeverBounce was unable "
+                            + "to be parsed as json. Try the request "
+                            + "again, if this error persists"
+                            + " let us know at support@neverbounce.com."
+                            + "\n\n(Internal error)"
+                        );
+
+                    //if(parsed.msg === "Authentication failed")
+                    //    throw new _Error(_Error.AccessTokenExpired, "Yo")
+
+                    resolve(parsed);
                 });
             })
 
@@ -72,7 +90,7 @@ HttpsClient.prototype = {
             req.end();
 
             req.on('error', (e) => {
-                reject(e);
+                new Error(e);
             })
         })
     },
@@ -83,7 +101,7 @@ HttpsClient.prototype = {
      */
     getAccessToken() {
         if(this.access_token)
-            return new Promise.resolve(this.access_token);
+            return Promise.resolve(this.access_token);
 
         return this._request({
             auth: this._nb.getConfig().apiKey + ':' + this._nb.getConfig().apiSecret,
@@ -93,13 +111,18 @@ HttpsClient.prototype = {
             scope: 'basic user'
         }).then(
             (res) => {
+                if(res.error !== undefined)
+                    throw new _Error(_Error.AuthError,
+                        "We were unable to complete your request. "
+                        + "The following information was supplied: "
+                        + res.error_description
+                        + "\n\n(Request error [" + res.error + "])"
+                    );
+
                 this.access_token = res.access_token;
                 return Promise.resolve(this.access_token);
-            },
-            (res) => {
-                return Promise.reject(res);
             }
-        )
+        ).catch((e) => Promise.reject(e));
     }
 }
 
