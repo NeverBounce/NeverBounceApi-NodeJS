@@ -2,7 +2,7 @@
   "name": "neverbounce",
   "version": "0.1.0",
   "description": "An API wrapper for the NeverBounce API",
-  "main": "lib/neverbounce.js",
+  "main": "lib/NeverBounce.js",
   "scripts": {
     "test": "mocha",
     "build": "babel src -d lib"
@@ -20,6 +20,7 @@
   "contributers": [
     "Mike Mollick <mike@neverbounce.com>"
   ],
+  "homepage": "https://neverbounce.com",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.5.1",

@@ -3,12 +3,12 @@ var assert = require('assert');
 describe('NeverBounce', function() {
     describe('Constructor', function () {
         it('should return default config when no params are given', function () {
-            var nb0 = require('../src/NeverBounce')();
+            var nb0 = require('../lib/NeverBounce')();
             assert.deepEqual(nb0.getConfig(), nb0.getDefaultConfig());
         });
 
         it('should return default new config when no params are given', function () {
-            var nb1 = require('../src/NeverBounce')({
+            var nb1 = require('../lib/NeverBounce')({
                 apiKey: 'xxx',
                 apiSecret: 'yyy'
             });
@@ -20,7 +20,7 @@ describe('NeverBounce', function() {
     });
 
     describe('Setters', function() {
-        var nb0 = require('../src/NeverBounce')();
+        var nb0 = require('../lib/NeverBounce')();
         it('should be able to set API key after initialization', function () {
             nb0.setApiKey('xxx');
             assert.equal(nb0.getConfig().apiKey, 'xxx');
@@ -45,7 +45,7 @@ describe('NeverBounce', function() {
     describe('Request Options', function() {
 
         it('request opts should always be able to be overridable on a per request basis', function () {
-            var nb2 = require('../src/NeverBounce')();
+            var nb2 = require('../lib/NeverBounce')();
             assert.deepEqual(nb2.getConfig().opts, nb2.getDefaultConfig().opts);
             assert.deepEqual(nb2.getRequestOpts(), nb2.getDefaultConfig().opts);
             assert.notDeepEqual(nb2.getRequestOpts({'path': '/health'}), nb2.getRequestOpts());

@@ -1,6 +1,6 @@
 // Just a dummy test for now...
 var assert = require('assert');
-var Single = require('../src/single');
+var Single = require('../lib/single');
 
 describe('Single', function() {
     describe('Constructor', function () {
