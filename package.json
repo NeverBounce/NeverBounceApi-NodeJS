@@ -4,8 +4,8 @@
   "description": "An API wrapper for the NeverBounce API",
   "main": "lib/NeverBounce.js",
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
+    "type": "git",
+    "url": "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
   },
   "scripts": {
     "test": "mocha",
@@ -36,6 +36,7 @@
     "mocha": "^2.4.5"
   },
   "dependencies": {
+    "es6-promise": "^3.1.2",
     "qs": "^6.1.0"
   }
 }

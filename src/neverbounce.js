@@ -1,3 +1,6 @@
+// Load polyfill for older Node versions
+Object.assign = Object.assign || require('es6-object-assign').assign;
+
 /**
  * Default config values, these are overwritten when calling the constructor
  * @type {{apiKey: null, apiSecret: null, opts: {host: string, port: number, prefix: string, method: string, headers: {Content-Type: string, User-Agent: string}}}}
