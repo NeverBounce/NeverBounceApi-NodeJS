@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "An API wrapper for the NeverBounce API",
   "main": "lib/NeverBounce.js",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
+  },
   "scripts": {
     "test": "mocha",
     "build": "babel src -d lib",
@@ -18,7 +22,7 @@
     "cleaning"
   ],
   "author": "NeverBounce <support@neverbounce.com> (https://neverbounce.com)",
-  "contributers": [
+  "contributors": [
     "Mike Mollick <mike@neverbounce.com>"
   ],
   "homepage": "https://neverbounce.com",
@@ -27,7 +31,9 @@
     "babel-cli": "^6.5.1",
     "babel-eslint": "^5.0.0",
     "babel-preset-es2015": "^6.5.0",
-    "eslint": "^2.1.0"
+    "chai": "^3.5.0",
+    "eslint": "^2.1.0",
+    "mocha": "^2.4.5"
   },
   "dependencies": {
     "qs": "^6.1.0"
