@@ -1,6 +1,6 @@
 {
   "name": "neverbounce",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "An API wrapper for the NeverBounce API",
   "main": "lib/NeverBounce.js",
   "repository": {
