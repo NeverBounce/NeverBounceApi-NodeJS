@@ -27,7 +27,7 @@ function HttpsClient(_nb) {
 
     this.id = Math.random();
     this._nb = _nb;
-    this.access_token = null;
+    this.access_token = 'xxxx';
 };
 
 HttpsClient.prototype = {
@@ -45,7 +45,14 @@ HttpsClient.prototype = {
             }
         ).then(
             (res) => Promise.resolve(res)
-        ).catch((e) => Promise.reject(e))
+        ).catch((e) => {
+            if(e.type === _Error.AccessTokenExpired) {
+                this.access_token = null;
+                return this.request(params, data)
+            }
+
+            return Promise.reject(e)
+        })
     },
 
     /**
@@ -63,24 +70,26 @@ HttpsClient.prototype = {
             opts.headers['Content-Length'] = Buffer.byteLength(query);
 
             var req = https.request(opts, (res) => {
+
                 res.on('data', (chunk) => {
-                    //if(res.statusCode !== 200)
-                    //    throw new Error(chunk.toString('utf8'));
-                        //reject(chunk.toString('utf8'));
-                    var parsed = JSON.parse(chunk.toString('utf8'));
 
-                    if(parsed === undefined)
-                        throw new _Error(
-                            _Error.ResponseError,
-                            "The response from NeverBounce was unable "
-                            + "to be parsed as json. Try the request "
-                            + "again, if this error persists"
-                            + " let us know at support@neverbounce.com."
-                            + "\n\n(Internal error)"
+                    try {
+                        var parsed = JSON.parse(chunk.toString('utf8'));
+                    } catch(e) {
+                        reject(
+                            new _Error(
+                                _Error.ResponseError,
+                                "The response from NeverBounce was unable "
+                                + "to be parsed as json. Try the request "
+                                + "again, if this error persists"
+                                + " let us know at support@neverbounce.com."
+                                + "\n\n(Internal error)"
+                            )
                         );
+                    }
 
-                    //if(parsed.msg === "Authentication failed")
-                    //    throw new _Error(_Error.AccessTokenExpired, "Yo")
+                    if(parsed.msg === "Authentication failed")
+                        reject( new _Error(_Error.AccessTokenExpired) );
 
                     resolve(parsed);
                 });
@@ -89,9 +98,7 @@ HttpsClient.prototype = {
             req.write(query);
             req.end();
 
-            req.on('error', (e) => {
-                new Error(e);
-            })
+            req.on('error', (e) => reject(e))
         })
     },
 
