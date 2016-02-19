@@ -2,6 +2,7 @@ _Error.AccessTokenExpired = 'AccessTokenExpired';
 _Error.ApiError = 'ApiError';
 _Error.AuthError = 'AuthError';
 _Error.ResponseError = 'ResponseError';
+_Error.RequestError = 'RequestError';
 
 function _Error(type, message) {
     this.name = 'NeverBounce Error';

@@ -88,8 +88,21 @@ HttpsClient.prototype = {
                         );
                     }
 
-                    if(parsed.msg === "Authentication failed")
-                        reject( new _Error(_Error.AccessTokenExpired) );
+                    if(parsed.success === false) {
+
+                        // Handle expired token
+                        if(parsed.msg === "Authentication failed")
+                            reject( new _Error(_Error.AccessTokenExpired) );
+
+                        reject( new _Error(
+                            _Error.RequestError,
+                                "We were unable to complete your request. "
+                                + "The following information was supplied: "
+                                + parsed.msg
+                                + "\n\n(Request error)"
+                            )
+                        );
+                    }
 
                     resolve(parsed);
                 });
