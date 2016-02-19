@@ -33,8 +33,12 @@ You can now access the verify method from this object. To validate a single emai
 NeverBounce.single.verify(EMAIL_TO_VALIDATE).then(
     function(result) {
         // do stuff
+    },
+    function(error) {
+        // errors will bubble up through the reject method of the promise.
+        // you'll want to console.log them otherwise it'll fail silently
     }
-)
+);
 ```
 
 The `result` returned in from the verification promise will be a `Result` object. It provides several helper methods documented below...
