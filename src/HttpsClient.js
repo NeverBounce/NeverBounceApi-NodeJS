@@ -79,11 +79,11 @@ HttpsClient.prototype = {
                         reject(
                             new _Error(
                                 _Error.ResponseError,
-                                "The response from NeverBounce was unable "
-                                + "to be parsed as json. Try the request "
-                                + "again, if this error persists"
-                                + " let us know at support@neverbounce.com."
-                                + "\n\n(Internal error)"
+                                'The response from NeverBounce was unable '
+                                + 'to be parsed as json. Try the request '
+                                + 'again, if this error persists'
+                                + ' let us know at support@neverbounce.com.'
+                                + '\n\n(Internal error)'
                             )
                         );
                     }
@@ -91,15 +91,15 @@ HttpsClient.prototype = {
                     if(parsed.success === false) {
 
                         // Handle expired token
-                        if(parsed.msg === "Authentication failed")
+                        if(parsed.msg === 'Authentication failed')
                             reject( new _Error(_Error.AccessTokenExpired) );
 
                         reject( new _Error(
                             _Error.RequestError,
-                                "We were unable to complete your request. "
-                                + "The following information was supplied: "
+                                'We were unable to complete your request. '
+                                + 'The following information was supplied: '
                                 + parsed.msg
-                                + "\n\n(Request error)"
+                                + '\n\n(Request error)'
                             )
                         );
                     }
@@ -133,10 +133,10 @@ HttpsClient.prototype = {
             (res) => {
                 if(res.error !== undefined)
                     throw new _Error(_Error.AuthError,
-                        "We were unable to complete your request. "
-                        + "The following information was supplied: "
+                        'We were unable to complete your request. '
+                        + 'The following information was supplied: '
                         + res.error_description
-                        + "\n\n(Request error [" + res.error + "])"
+                        + '\n\n(Request error [' + res.error + '])'
                     );
 
                 this.access_token = res.access_token;
