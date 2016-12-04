@@ -73,6 +73,7 @@ HttpsClient.prototype = {
 
                 res.on('data', (chunk) => {
 
+                    // Try...catch doesn't seem to work in some versions of node
                     try {
                         var parsed = JSON.parse(chunk.toString('utf8'));
                     } catch(e) {
@@ -88,8 +89,22 @@ HttpsClient.prototype = {
                         );
                     }
 
-                    if(parsed.success === false) {
+                    // Handle cases where try...catch doesn't catch JSON.parse failures
+                    if(parsed === undefined || !parsed) {
+                        reject(
+                            new _Error(
+                                _Error.ResponseError,
+                                'The response from NeverBounce was unable '
+                                + 'to be parsed as json. Try the request '
+                                + 'again, if this error persists'
+                                + ' let us know at support@neverbounce.com.'
+                                + '\n\n(Internal error)'
+                            )
+                        );
+                    }
 
+                    // Handle request failures (success===failures)
+                    else if (parsed.success === false) {
                         // Handle expired token
                         if(parsed.msg === 'Authentication failed')
                             reject( new _Error(_Error.AccessTokenExpired) );
@@ -106,7 +121,7 @@ HttpsClient.prototype = {
 
                     resolve(parsed);
                 });
-            })
+            });
 
             req.write(query);
             req.end();
@@ -144,6 +159,6 @@ HttpsClient.prototype = {
             }
         ).catch((e) => Promise.reject(e));
     }
-}
+};
 
 module.exports = HttpsClient;
