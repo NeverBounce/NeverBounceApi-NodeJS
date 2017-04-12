@@ -8,6 +8,7 @@ Object.assign = Object.assign || require('es6-object-assign').assign;
 NeverBounce.defaultConfig = {
     apiKey: null,
     apiSecret: null,
+    timeout: 30000,
     opts: {
         host: 'api.neverbounce.com',
         port: 443,
