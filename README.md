@@ -51,3 +51,13 @@ result.is([0,3,4]); // Returns true if result is valid, catchall, or unknown
 result.not(1); // Returns true if result is not invalid
 result.not([1,2]); // Returns true if result is not invalid or disposable
 ```
+
+To set a client side timeout use the `timeout` config option.
+
+```
+var NeverBounce = require('neverbounce')({
+    apiKey: API_KEY,
+    apiSecret: API_SECRET_KEY,
+    timeout: 30000 // timeout in milliseconds
+});
+```
