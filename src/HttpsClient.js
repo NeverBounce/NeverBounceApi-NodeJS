@@ -123,6 +123,13 @@ HttpsClient.prototype = {
                 });
             });
 
+            // Handle timeout
+            if(this._nb.getConfig().timeout) {
+                req.setTimeout(this._nb.getConfig().timeout, () => {
+                    req.destroy();
+                });
+            }
+
             req.write(query);
             req.end();
 
