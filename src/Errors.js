@@ -1,12 +1,12 @@
-_Error.AccessTokenExpired = 'AccessTokenExpired';
-_Error.ApiError = 'ApiError';
 _Error.AuthError = 'AuthError';
-_Error.ResponseError = 'ResponseError';
-_Error.RequestError = 'RequestError';
+_Error.BadReferrerError = 'BadReferrerError';
+_Error.GeneralError = 'GeneralError';
+_Error.HttpClientError = 'HttpClientError';
+_Error.ThrottleError = 'ThrottleError';
 
 function _Error(type, message) {
     this.name = 'NeverBounce Error';
-    this.type = type || 'GenericError',
+    this.type = type || 'GenericError';
     this.message = message || 'Generic Error';
     this.stack = (new Error()).stack;
 }
