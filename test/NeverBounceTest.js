@@ -1,56 +1,77 @@
-// Just a dummy test for now...
-var assert = require('assert');
-describe('NeverBounce', function() {
-    describe('Constructor', function () {
+var assert = require('assert'),
+    NeverBounce = require('../src/NeverBounce');
+
+describe('NeverBounce SDK', function() {
+    describe('constructor', function () {
         it('should return default config when no params are given', function () {
-            var nb0 = require('../lib/NeverBounce')();
+            const nb0 = new NeverBounce();
             assert.deepEqual(nb0.getConfig(), nb0.getDefaultConfig());
         });
 
-        it('should return default new config when no params are given', function () {
-            var nb1 = require('../lib/NeverBounce')({
+        it('should accept arguments in constructor to override defaults', function () {
+            const nb0 = new NeverBounce({
                 apiKey: 'xxx',
-                apiSecret: 'yyy'
+                timeout: 100,
+                opts: {
+                    host: 'test.neverbounce.com'
+                }
             });
-            assert.notDeepEqual(nb1.getConfig(), nb1.getDefaultConfig());
-            assert.equal(nb1.getConfig().apiKey, 'xxx');
-            assert.equal(nb1.getConfig().apiSecret, 'yyy');
-            assert.deepEqual(nb1.getConfig().opts, nb1.getDefaultConfig().opts);
+
+            assert.notDeepEqual(nb0.getConfig(), nb0.getDefaultConfig());
+            assert.equal(nb0.getConfig().apiKey, 'xxx');
+            assert.deepEqual(nb0.getConfig().opts, {
+                host: 'test.neverbounce.com',
+                port: 443,
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
+                }
+            });
+        });
+
+        it('should load API resources', function() {
+            const nb0 = new NeverBounce();
+            assert.notEqual(nb0.single, undefined);
         });
     });
 
     describe('Setters', function() {
-        var nb0 = require('../lib/NeverBounce')();
+        const nb0 = new NeverBounce();
         it('should be able to set API key after initialization', function () {
             nb0.setApiKey('xxx');
             assert.equal(nb0.getConfig().apiKey, 'xxx');
         });
 
-        it('should be able to set API secret after initialization', function () {
-            nb0.setApiSecret('yyy');
-            assert.equal(nb0.getConfig().apiSecret, 'yyy');
-        });
-
-        it('should be able to set API router after initialization', function () {
+        it('should be able to set API host after initialization', function () {
             nb0.setHost('https://router.neverbounce.com');
             assert.equal(nb0.getConfig().opts.host, 'https://router.neverbounce.com');
-        });
-
-        it('should be able to set API version after initialization', function () {
-            nb0.setVersion('v4');
-            assert.equal(nb0.getConfig().opts.prefix, '/v4/');
         });
     });
 
     describe('Request Options', function() {
+        it('should be overridable on a per request basis', function () {
+            const nb0 = new NeverBounce();
+            assert.deepEqual(nb0.getConfig().opts, {
+                host: 'api.neverbounce.com',
+                port: 443,
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
+                }
+            });
 
-        it('request opts should always be able to be overridable on a per request basis', function () {
-            var nb2 = require('../lib/NeverBounce')();
-            assert.deepEqual(nb2.getConfig().opts, nb2.getDefaultConfig().opts);
-            assert.deepEqual(nb2.getRequestOpts(), nb2.getDefaultConfig().opts);
-            assert.notDeepEqual(nb2.getRequestOpts({'path': '/health'}), nb2.getRequestOpts());
-            assert.equal(nb2.getRequestOpts({'path': '/health'}).path, '/health');
+            assert.deepEqual(nb0.getRequestOpts({'path': '/health'}), {
+                    path: '/health',
+                    host: 'api.neverbounce.com',
+                    port: 443,
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
+                    }
+                });
         });
-
     });
 });

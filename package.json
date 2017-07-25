@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "es6-object-assign": "^1.1.0",
+    "lodash.merge": "^4.6.0",
     "qs": "^6.5.0"
   }
 }

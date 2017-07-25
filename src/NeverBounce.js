@@ -1,5 +1,6 @@
 // Load polyfill for older Node versions
 Object.assign = Object.assign || require('es6-object-assign').assign;
+var merge = require('lodash.merge');
 
 /**
  * Default config values, these are overwritten when calling the constructor
@@ -7,21 +8,20 @@ Object.assign = Object.assign || require('es6-object-assign').assign;
  */
 NeverBounce.defaultConfig = {
     apiKey: null,
-    apiSecret: null,
     timeout: 30000,
     opts: {
         host: 'api.neverbounce.com',
         port: 443,
-        method: 'POST',
+        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
         }
     }
-}
+};
 
 var resources = {
-    Single: require('./Single'),
+    single: require('./Single'),
 };
 
 /**
@@ -35,7 +35,7 @@ function NeverBounce(config) {
         return new NeverBounce(config);
     }
 
-    this.config = Object.assign({}, NeverBounce.defaultConfig, config);
+    this.config = merge({}, NeverBounce.defaultConfig, config);
     this._prepResources();
 }
 
@@ -74,14 +74,6 @@ NeverBounce.prototype = {
     },
 
     /**
-     * Set api key
-     * @param secret
-     */
-    setApiSecret (secret) {
-        this.config.apiSecret = secret;
-    },
-
-    /**
      * Set api url
      * @param host
      */
@@ -90,13 +82,10 @@ NeverBounce.prototype = {
     },
 
     /**
-     * Sets api version
-     * @param version
+     * Loads resources (endpoints) into object
+     * e.g. this.Single && this.Jobs
+     * @private
      */
-    setVersion (version) {
-        this.config.opts.prefix = '/' + version + '/';
-    },
-
     _prepResources() {
         for (var name in resources) {
             this[
