@@ -100,8 +100,8 @@ NeverBounce.prototype = {
     _prepResources() {
         for (var name in resources) {
             this[
-            name[0].toLowerCase() + name.substring(1)
-                ] = new resources[name].client(this);
+                name[0].toLowerCase() + name.substring(1)
+            ] = new resources[name].client(this);
         }
     },
 }

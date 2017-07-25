@@ -111,11 +111,11 @@ HttpsClient.prototype = {
 
                         reject( new _Error(
                             _Error.RequestError,
-                                'We were unable to complete your request. '
+                            'We were unable to complete your request. '
                                 + 'The following information was supplied: '
                                 + ( parsed.msg || parsed.error_msg )
                                 + '\n\n(Request error)'
-                            )
+                        )
                         );
                     }
 
