@@ -8,6 +8,7 @@
     "url": "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
   },
   "scripts": {
+    "test-local": "npm run build && npm run test",
     "test": "mocha",
     "build": "babel src -d lib",
     "lint": "./node_modules/.bin/eslint ./src/* --fix"
@@ -32,12 +33,12 @@
     "babel-eslint": "^7.2.3",
     "babel-preset-es2015": "^6.24.1",
     "chai": "^4.1.0",
+    "chai-as-promised": "^7.1.1",
     "eslint": "^4.3.0",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "nock": "^9.0.14"
   },
   "dependencies": {
-    "es6-object-assign": "^1.1.0",
-    "lodash.merge": "^4.6.0",
-    "qs": "^6.5.0"
+    "lodash.merge": "^4.6.0"
   }
 }
