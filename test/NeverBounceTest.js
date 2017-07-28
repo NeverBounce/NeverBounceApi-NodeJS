@@ -1,11 +1,11 @@
 var assert = require('assert'),
-    NeverBounce = require('../src/NeverBounce');
+    NeverBounce = require('../lib/NeverBounce');
 
 describe('NeverBounce SDK', function() {
     describe('constructor', function () {
         it('should return default config when no params are given', function () {
             const nb0 = new NeverBounce();
-            assert.deepEqual(nb0.getConfig(), nb0.getDefaultConfig());
+            assert.deepEqual(nb0.getConfig(), NeverBounce.defaultConfig);
         });
 
         it('should accept arguments in constructor to override defaults', function () {
@@ -17,7 +17,7 @@ describe('NeverBounce SDK', function() {
                 }
             });
 
-            assert.notDeepEqual(nb0.getConfig(), nb0.getDefaultConfig());
+            assert.notDeepEqual(nb0.getConfig(), NeverBounce.defaultConfig);
             assert.equal(nb0.getConfig().apiKey, 'xxx');
             assert.deepEqual(nb0.getConfig().opts, {
                 host: 'test.neverbounce.com',
