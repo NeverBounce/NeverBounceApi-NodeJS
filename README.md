@@ -22,7 +22,7 @@ To initialize the wrapper use the following snippet, substituting in your `api k
 
 ```
 var NeverBounce = require('neverbounce')({
-    apiKey: API_KEY,
+    apiKey: API_USER_NAME,
     apiSecret: API_SECRET_KEY
 });
 ```
