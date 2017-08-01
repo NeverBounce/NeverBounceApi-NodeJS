@@ -3,8 +3,7 @@ const _Error = require('./Errors');
 
 class HttpsClient {
 
-    constructor (_nb) {
-        this.id = Math.random();
+    constructor(_nb) {
         this._nb = _nb;
     }
 
@@ -31,7 +30,7 @@ class HttpsClient {
             const req = https.request(opts, (res) => {
 
                 // Handle 4xx HTTP codes
-                if(res.statusCode >= 400 && res.statusCode < 500) {
+                if (res.statusCode >= 400 && res.statusCode < 500) {
                     return reject(
                         new _Error(
                             _Error.GeneralError,
@@ -43,7 +42,7 @@ class HttpsClient {
                 }
 
                 // Handle 5xx HTTP codes
-                if(res.statusCode >= 500) {
+                if (res.statusCode >= 500) {
                     return reject(
                         new _Error(
                             _Error.GeneralError,
@@ -68,7 +67,7 @@ class HttpsClient {
             req.end();
 
             // Handle timeout
-            if(this._nb.getConfig().timeout) {
+            if (this._nb.getConfig().timeout) {
                 req.setTimeout(this._nb.getConfig().timeout, () => {
                     req.destroy();
                 });
@@ -77,7 +76,7 @@ class HttpsClient {
     }
 
     parseResponse(chunks, headers, code) {
-        return new Promise((resolve, reject) =>{
+        return new Promise((resolve, reject) => {
             if (headers['content-type'] === 'application/json') {
                 let decoded;
 

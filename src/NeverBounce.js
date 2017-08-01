@@ -14,7 +14,7 @@ class NeverBounce {
      * @returns {NeverBounce}
      * @constructor
      */
-    constructor (config) {
+    constructor(config) {
         this.config = merge({}, NeverBounce.defaultConfig, config);
         this._prepResources();
     }
@@ -23,7 +23,7 @@ class NeverBounce {
      * Returns config
      * @returns {*}
      */
-    getConfig () {
+    getConfig() {
         return merge({}, this.config);
     }
 
@@ -32,7 +32,7 @@ class NeverBounce {
      * @param opts
      * @returns {*}
      */
-    getRequestOpts (opts) {
+    getRequestOpts(opts) {
         return merge({}, this.config.opts, opts);
     }
 
@@ -40,7 +40,7 @@ class NeverBounce {
      * Set api key
      * @param key
      */
-    setApiKey (key) {
+    setApiKey(key) {
         this.config.apiKey = key;
     }
 
@@ -48,7 +48,7 @@ class NeverBounce {
      * Set api url
      * @param host
      */
-    setHost (host) {
+    setHost(host) {
         this.config.opts.host = host;
     }
 
@@ -60,8 +60,8 @@ class NeverBounce {
     _prepResources() {
         for (let name in resources) {
             this[
-                name[0].toLowerCase() + name.substring(1)
-            ] = new resources[name](this);
+            name[0].toLowerCase() + name.substring(1)
+                ] = new resources[name](this);
         }
     }
 }
