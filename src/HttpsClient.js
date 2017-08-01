@@ -135,7 +135,7 @@ class HttpsClient {
                                     'We were unable to authenticate your request. '
                                     + 'The following information was supplied: '
                                     + `${decoded.message}`
-                                    + "\n\n(auth_failure)"
+                                    + '\n\n(auth_failure)'
                                 )
                             );
 
@@ -146,7 +146,7 @@ class HttpsClient {
                                     'We were unable to complete your request. '
                                     + 'The following information was supplied: '
                                     + `${decoded.message}`
-                                    + "\n\n(temp_unavail)"
+                                    + '\n\n(temp_unavail)'
                                 )
                             );
 
@@ -157,7 +157,7 @@ class HttpsClient {
                                     'We were unable to complete your request. '
                                     + 'The following information was supplied: '
                                     + `${decoded.message}`
-                                    + "\n\n(throttle_triggered)"
+                                    + '\n\n(throttle_triggered)'
                                 )
                             );
 
@@ -168,7 +168,7 @@ class HttpsClient {
                                     'We were unable to complete your request. '
                                     + 'The following information was supplied: '
                                     + `${decoded.message}`
-                                    + "\n\n(bad_referrer)"
+                                    + '\n\n(bad_referrer)'
                                 )
                             );
 
@@ -180,7 +180,7 @@ class HttpsClient {
                                     'We were unable to complete your request. '
                                     + 'The following information was supplied: '
                                     + `${decoded.message}`
-                                    + "\n\n({$decoded['status']})"
+                                    + '\n\n({$decoded[\'status\']})'
                                 )
                             );
                     }

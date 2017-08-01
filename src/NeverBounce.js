@@ -61,8 +61,8 @@ class NeverBounce {
     _prepResources() {
         for (let name in resources) {
             this[
-            name[0].toLowerCase() + name.substring(1)
-                ] = new resources[name](this);
+                name[0].toLowerCase() + name.substring(1)
+            ] = new resources[name](this);
         }
     }
 }
