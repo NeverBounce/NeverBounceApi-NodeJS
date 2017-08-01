@@ -1,5 +1,5 @@
 const assert = require('assert'),
-    VerificationObject = require('../src/VerificationObject');
+    VerificationObject = require('../lib/VerificationObject');
 
 describe('VerificationObject', function () {
     describe('Constructor', function () {

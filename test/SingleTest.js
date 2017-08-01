@@ -1,9 +1,9 @@
 const chai = require('chai'),
     chaiAsPromised = require("chai-as-promised"),
     nock = require('nock'),
-    _Errors = require('../src/Errors'),
-    VerificationObject = require('../src/VerificationObject'),
-    NeverBounce = require('../src/NeverBounce');
+    _Errors = require('../lib/Errors'),
+    VerificationObject = require('../lib/VerificationObject'),
+    NeverBounce = require('../lib/NeverBounce');
 
 chai.use(chaiAsPromised);
 chai.should();

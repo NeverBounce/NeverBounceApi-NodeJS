@@ -1,5 +1,5 @@
 const assert = require('assert'),
-    NeverBounce = require('../src/NeverBounce');
+    NeverBounce = require('../lib/NeverBounce');
 
 describe('NeverBounce SDK', function () {
     describe('constructor', function () {
