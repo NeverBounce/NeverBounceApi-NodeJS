@@ -1,48 +1,48 @@
-// Just a dummy test for now...
-var assert = require('assert');
-var Single = require('../lib/Single');
+const chai = require('chai'),
+    chaiAsPromised = require("chai-as-promised"),
+    nock = require('nock'),
+    _Errors = require('../src/Errors'),
+    VerificationObject = require('../src/VerificationObject'),
+    NeverBounce = require('../src/NeverBounce');
 
-describe('Single', function() {
-    describe('Constructor', function () {
-        it('should return the correct result from the response', function () {
-            var result = new Single.Result({
-                success: true,
-                result: 0,
-                result_details: 0,
-                execution_time: 0.22115206718445
+chai.use(chaiAsPromised);
+chai.should();
+
+// Setup node request mock
+const scope = nock('https://api.neverbounce.com')
+    .get('/v4/single/check');
+
+// Create NeverBounce object
+const nb = new NeverBounce();
+
+describe('Single', function () {
+    describe('verify', function () {
+        it('should return an instance of VerificationObject with a good response', function () {
+            scope.reply(200, {
+                "status": "success",
+                "result": "valid",
+                "flags": [
+                    "has_dns",
+                    "has_dns_mx"
+                ],
+                "suggested_correction": "",
+                "retry_token": "",
+                "execution_time": 499
             });
-            assert.equal(result.getResult(), 0);
-            assert.equal(result.getResultTextCode(), 'valid');
+
+            return nb.single.verify('support@neverbounce.com').should.be.fulfilled
+                .then(resp => resp.should.be.an.instanceOf(VerificationObject));
         });
-    });
-    describe('is', function () {
-        it('should return the true when in range, false when out', function () {
-            var result = new Single.Result({
-                success: true,
-                result: 0,
-                result_details: 0,
-                execution_time: 0.22115206718445
+
+        it('should reject the promise and provide an error', function () {
+            scope.reply(200, {
+                "status": "general_failure",
+                "message": "An error occurred",
+                "execution_time": 499
             });
-            assert.equal(result.is(0), true);
-            assert.equal(result.is(Single.Result.valid), true);
-            assert.equal(result.is(1), false);
-            assert.equal(result.is([0,3,4]), true);
-            assert.equal(result.is([1,2]), false);
-        });
-    });
-    describe('not', function () {
-        it('should return the true when NOT in range, false when in', function () {
-            var result = new Single.Result({
-                success: true,
-                result: 0,
-                result_details: 0,
-                execution_time: 0.22115206718445
-            });
-            assert.equal(result.not(0), false);
-            assert.equal(result.not(Single.Result.valid), false);
-            assert.equal(result.not(1), true);
-            assert.equal(result.not([0,3,4]), false);
-            assert.equal(result.not([1,2]), true);
+
+            return nb.single.verify('support@neverbounce.com').should.be.rejected
+                .then(err => err.should.contain({'type': _Errors.GeneralError}));
         });
     });
 });
