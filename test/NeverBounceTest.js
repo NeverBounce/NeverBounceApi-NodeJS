@@ -1,7 +1,7 @@
-var assert = require('assert'),
-    NeverBounce = require('../lib/NeverBounce');
+const assert = require('assert'),
+    NeverBounce = require('../src/NeverBounce');
 
-describe('NeverBounce SDK', function() {
+describe('NeverBounce SDK', function () {
     describe('constructor', function () {
         it('should return default config when no params are given', function () {
             const nb0 = new NeverBounce();
@@ -30,13 +30,13 @@ describe('NeverBounce SDK', function() {
             });
         });
 
-        it('should load API resources', function() {
+        it('should load API resources', function () {
             const nb0 = new NeverBounce();
             assert.notEqual(nb0.single, undefined);
         });
     });
 
-    describe('Setters', function() {
+    describe('Setters', function () {
         const nb0 = new NeverBounce();
         it('should be able to set API key after initialization', function () {
             nb0.setApiKey('xxx');
@@ -49,7 +49,7 @@ describe('NeverBounce SDK', function() {
         });
     });
 
-    describe('Request Options', function() {
+    describe('Request Options', function () {
         it('should be overridable on a per request basis', function () {
             const nb0 = new NeverBounce();
             assert.deepEqual(nb0.getConfig().opts, {
@@ -63,15 +63,15 @@ describe('NeverBounce SDK', function() {
             });
 
             assert.deepEqual(nb0.getRequestOpts({'path': '/health'}), {
-                    path: '/health',
-                    host: 'api.neverbounce.com',
-                    port: 443,
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
-                    }
-                });
+                path: '/health',
+                host: 'api.neverbounce.com',
+                port: 443,
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
+                }
+            });
         });
     });
 });
