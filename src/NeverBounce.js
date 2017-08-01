@@ -3,6 +3,7 @@ const merge = require('lodash.merge');
 
 // Load classes
 const resources = {
+    account: require('./Account'),
     single: require('./Single'),
 };
 
