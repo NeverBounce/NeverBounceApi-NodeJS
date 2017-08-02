@@ -91,7 +91,7 @@ class Jobs extends HttpsClient {
      */
     status(jobid) {
         return this.request({
-            method: 'POST',
+            method: 'GET',
             path: '/v4/jobs/status'
         }, {
             'job_id': jobid,
