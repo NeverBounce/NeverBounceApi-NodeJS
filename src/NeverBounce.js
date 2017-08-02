@@ -1,9 +1,12 @@
+'use strict';
+
 // Load lodash merge
 const merge = require('lodash.merge');
 
 // Load classes
 const resources = {
     account: require('./Account'),
+    jobs: require('./Jobs'),
     single: require('./Single'),
 };
 
@@ -76,7 +79,6 @@ NeverBounce.defaultConfig = {
     opts: {
         host: 'api.neverbounce.com',
         port: 443,
-        method: 'GET',
         headers: {
             'Content-Type': 'application/json',
             'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
