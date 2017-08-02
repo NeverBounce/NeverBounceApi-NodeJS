@@ -11,11 +11,26 @@
 
 This is the official NeverBounce API NodeJS wrapper. It provides helpful methods to quickly implement our API in your NodeJS applications.
 
+**This package is not suitable for use in the browser! Only use it in server side applications!**
+
 Installation
 ===
+
+> Coming soon
 
 To install use the following command
 
 ```
 $ npm install neverbounce --save
+```
+
+Running Examples
+---
+
+To run the examples contained in this project create a `.env.js` file in the root that contains the following (substituting in your own API key):
+
+```
+module.exports = {
+  apiKey: 'Enter your api key here',
+};
 ```
