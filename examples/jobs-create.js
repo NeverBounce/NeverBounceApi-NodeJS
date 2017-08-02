@@ -3,7 +3,7 @@ const NeverBounce = require('../src/NeverBounce.js');
 // Initialize NeverBounce client
 const client = new NeverBounce(require('../.env'));
 
-// Verify an email
+// Verify a list of emails
 client.jobs.create(
     [
         {
@@ -17,8 +17,8 @@ client.jobs.create(
             'name': 'Bob McInvalid'
         }
     ],
-    'supplied',
-    'Created from Array.csv'
+    'supplied', // Either `supplied` or `remote_url`
+    'Created from Array.csv' // Friendly name that can be used to identify job
 ).then(
     resp => console.log("Job ID: " + resp.job_id),
     err => console.log("ERROR: " + err.message)
