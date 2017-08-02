@@ -32,16 +32,5 @@ describe('Account', function () {
             return nb.account.info().should.be.fulfilled
                 .then(resp => resp.should.be.a('Object'));
         });
-
-        it('should reject the promise and provide an error', function () {
-            scope.reply(200, {
-                "status": "general_failure",
-                "message": "An error occurred",
-                "execution_time": 499
-            });
-
-            return nb.account.info().should.be.rejected
-                .then(err => err.should.contain({'type': _Errors.GeneralError}));
-        });
     });
 });
