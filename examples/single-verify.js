@@ -1,4 +1,4 @@
-const NeverBounce = require('../lib/NeverBounce.js');
+const NeverBounce = require('../src/NeverBounce.js');
 
 // Initialize NeverBounce client
 const client = new NeverBounce(require('../.env'));

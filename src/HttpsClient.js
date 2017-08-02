@@ -1,3 +1,5 @@
+'use strict';
+
 const https = require('https');
 const _Error = require('./Errors');
 
@@ -14,7 +16,8 @@ class HttpsClient {
      * @returns {Promise}
      * @private
      */
-    request(params, data = {}) {
+    request(params, data) {
+        data = data || {};
         return new Promise((resolve, reject) => {
             // Set key
             data.key = this._nb.getConfig().apiKey;
@@ -180,7 +183,7 @@ class HttpsClient {
                                     'We were unable to complete your request. '
                                     + 'The following information was supplied: '
                                     + `${decoded.message}`
-                                    + '\n\n({$decoded[\'status\']})'
+                                    + `\n\n(${decoded.status})`
                                 )
                             );
                     }

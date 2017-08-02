@@ -8,7 +8,7 @@
     "url": "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
   },
   "scripts": {
-    "test": "npm run build && mocha",
+    "test": "mocha",
     "build": "babel src -d lib",
     "lint": "./node_modules/.bin/eslint ./src/* --fix"
   },

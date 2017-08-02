@@ -1,5 +1,5 @@
 const assert = require('assert'),
-    NeverBounce = require('../lib/NeverBounce');
+    NeverBounce = require('../src/NeverBounce');
 
 describe('NeverBounce SDK', function () {
     describe('constructor', function () {
@@ -22,7 +22,6 @@ describe('NeverBounce SDK', function () {
             assert.deepEqual(nb0.getConfig().opts, {
                 host: 'test.neverbounce.com',
                 port: 443,
-                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
@@ -55,7 +54,6 @@ describe('NeverBounce SDK', function () {
             assert.deepEqual(nb0.getConfig().opts, {
                 host: 'api.neverbounce.com',
                 port: 443,
-                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
@@ -66,7 +64,6 @@ describe('NeverBounce SDK', function () {
                 path: '/health',
                 host: 'api.neverbounce.com',
                 port: 443,
-                method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
                     'User-Agent': 'NeverBounce-Node/' + require('../package.json').version

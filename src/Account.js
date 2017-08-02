@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpsClient = require('./HttpsClient');
 
 class Account extends HttpsClient {
@@ -8,7 +10,10 @@ class Account extends HttpsClient {
      * @returns {Promise.<T>}
      */
     info() {
-        return this.request({path: '/v4/account/info'}).then(
+        return this.request({
+            method: 'GET',
+            path: '/v4/account/info'
+        }).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
         )

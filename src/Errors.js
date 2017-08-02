@@ -1,3 +1,5 @@
+'use strict';
+
 _Error.AuthError = 'AuthError';
 _Error.BadReferrerError = 'BadReferrerError';
 _Error.GeneralError = 'GeneralError';

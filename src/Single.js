@@ -1,3 +1,5 @@
+'use strict';
+
 const HttpsClient = require('./HttpsClient'),
     VerificationObject = require('./VerificationObject');
 
@@ -10,11 +12,14 @@ class Single extends HttpsClient {
      * @param credits_info
      * @returns {Promise}
      */
-    verify(email, address_info = null, credits_info = null) {
-        return this.request({path: '/v4/single/check'}, {
+    verify(email, address_info, credits_info) {
+        return this.request({
+            method: 'GET',
+            path: '/v4/single/check'
+        }, {
             email: email,
-            address_info: address_info,
-            credits_info: credits_info
+            address_info: address_info || null,
+            credits_info: credits_info || null
         }).then(
             (resp) => Promise.resolve(new VerificationObject(resp)),
             (e) => Promise.reject(e)

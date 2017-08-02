@@ -1,9 +1,9 @@
 const chai = require("chai"),
     chaiAsPromised = require("chai-as-promised"),
     nock = require('nock'),
-    _Errors = require('../lib/Errors'),
-    NeverBounce = require('../lib/NeverBounce'),
-    HttpsClient = require('../lib/HttpsClient');
+    _Errors = require('../src/Errors'),
+    NeverBounce = require('../src/NeverBounce'),
+    HttpsClient = require('../src/HttpsClient');
 
 chai.use(chaiAsPromised);
 chai.should();
