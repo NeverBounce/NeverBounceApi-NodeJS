@@ -9,7 +9,6 @@
   },
   "scripts": {
     "test": "mocha",
-    "build": "babel src -d lib",
     "lint": "./node_modules/.bin/eslint ./src/* --fix"
   },
   "keywords": [

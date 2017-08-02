@@ -113,7 +113,7 @@ class Jobs extends HttpsClient {
             method: 'GET',
             path: '/v4/jobs/results'
         },
-            Object.assign({'job_id': jobid}, query || {})
+        Object.assign({'job_id': jobid}, query || {})
         ).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
@@ -131,7 +131,7 @@ class Jobs extends HttpsClient {
             method: 'GET',
             path: '/v4/jobs/download'
         },
-            Object.assign({'job_id': jobid}, query || {})
+        Object.assign({'job_id': jobid}, query || {})
         ).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
