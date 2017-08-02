@@ -7,6 +7,7 @@ const merge = require('lodash.merge');
 const resources = {
     account: require('./Account'),
     jobs: require('./Jobs'),
+    poe: require('./POE'),
     single: require('./Single'),
 };
 
