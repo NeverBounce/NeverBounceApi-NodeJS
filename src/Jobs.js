@@ -102,7 +102,6 @@ class Jobs extends HttpsClient {
     }
 
     /**
-     * TODO
      * Retrieves job results
      * @param jobid
      * @param query
