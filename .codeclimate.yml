@@ -4,9 +4,12 @@ engines:
     enabled: true
   fixme:
     enabled: true
+  nodesecurity:
+      enabled: true
 ratings:
   paths:
   - "src/**.js"
 exclude_paths:
+- .idea/
 - node_modules/
 - test/
