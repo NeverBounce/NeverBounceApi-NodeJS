@@ -9,8 +9,8 @@ client.jobs.results(285186,{
 //    'items_per_page': 10, // Number of items per page
 }).then(
     resp => {
-        console.log("Results Count: " + resp.results.length);
-        console.log("Results: " + resp.results.map(result => result.data.email + `(${result.verification.result})`));
+        console.log('Results Count: ' + resp.results.length);
+        console.log('Results: ' + resp.results.map(result => result.data.email + `(${result.verification.result})`));
     },
-    err => console.log("ERROR: " + err.message)
+    err => console.log('ERROR: ' + err.message)
 );

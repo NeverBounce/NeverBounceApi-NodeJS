@@ -12,8 +12,8 @@ client.jobs.search({
 //    'items_per_page': 10, // Number of items per page
 }).then(
     resp => {
-        console.log("Job Returned: " + resp.results.length);
-        console.log("Job IDs: " + resp.results.map(job => job.id));
+        console.log('Job Returned: ' + resp.results.length);
+        console.log('Job IDs: ' + resp.results.map(job => job.id));
     },
-    err => console.log("ERROR: " + err.message)
+    err => console.log('ERROR: ' + err.message)
 );

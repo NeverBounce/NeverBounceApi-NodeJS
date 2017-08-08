@@ -20,6 +20,6 @@ client.jobs.create(
     'supplied', // Either `supplied` or `remote_url`
     'Created from Array.csv' // Friendly name that can be used to identify job
 ).then(
-    resp => console.log("Job ID: " + resp.job_id),
-    err => console.log("ERROR: " + err.message)
+    resp => console.log('Job ID: ' + resp.job_id),
+    err => console.log('ERROR: ' + err.message)
 );
