@@ -1,5 +1,5 @@
 const chai = require('chai'),
-    chaiAsPromised = require("chai-as-promised"),
+    chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
     _Errors = require('../src/Errors'),
     VerificationObject = require('../src/VerificationObject'),
@@ -19,15 +19,15 @@ describe('Single', function () {
     describe('verify', function () {
         it('should return an instance of VerificationObject with a good response', function () {
             scope.reply(200, {
-                "status": "success",
-                "result": "valid",
-                "flags": [
-                    "has_dns",
-                    "has_dns_mx"
+                'status': 'success',
+                'result': 'valid',
+                'flags': [
+                    'has_dns',
+                    'has_dns_mx'
                 ],
-                "suggested_correction": "",
-                "retry_token": "",
-                "execution_time": 499
+                'suggested_correction': '',
+                'retry_token': '',
+                'execution_time': 499
             });
 
             return nb.single.verify('support@neverbounce.com').should.be.fulfilled

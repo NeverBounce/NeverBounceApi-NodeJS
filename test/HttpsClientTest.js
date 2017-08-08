@@ -1,5 +1,5 @@
-const chai = require("chai"),
-    chaiAsPromised = require("chai-as-promised"),
+const chai = require('chai'),
+    chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
     _Errors = require('../src/Errors'),
     NeverBounce = require('../src/NeverBounce'),
@@ -19,8 +19,8 @@ describe('HttpsClient', function() {
     const http = new HttpsClient(nb);
     it('decodes JSON repsonses', function () {
         scope.reply(200, {'status': 'success'}, {
-                'Content-Type': 'application/json'
-            });
+            'Content-Type': 'application/json'
+        });
 
         return http.request({path: '/v4/test'}).should.be.fulfilled
             .then(
@@ -62,7 +62,7 @@ describe('HttpsClient', function() {
     });
 
     it('rejects poorly formatted JSON', function () {
-        scope.reply(200, "{'bad_json'}", {
+        scope.reply(200, '{\'bad_json\'}', {
             'Content-Type': 'application/json'
         });
 
@@ -84,7 +84,7 @@ describe('HttpsClient', function() {
     });
 
     it('rejects auth_failure statuses', function () {
-        scope.reply(200, {'status': 'auth_failure', 'message': "Missing required parameter 'key'"}, {
+        scope.reply(200, {'status': 'auth_failure', 'message': 'Missing required parameter \'key\''}, {
             'Content-Type': 'application/json'
         });
 
@@ -95,7 +95,7 @@ describe('HttpsClient', function() {
     });
 
     it('rejects temp_unavail statuses', function () {
-        scope.reply(200, {'status': 'temp_unavail', 'message': "Service has gone away"}, {
+        scope.reply(200, {'status': 'temp_unavail', 'message': 'Service has gone away'}, {
             'Content-Type': 'application/json'
         });
 
@@ -106,7 +106,7 @@ describe('HttpsClient', function() {
     });
 
     it('rejects throttle_triggered statuses', function () {
-        scope.reply(200, {'status': 'throttle_triggered', 'message': "Too many requrests"}, {
+        scope.reply(200, {'status': 'throttle_triggered', 'message': 'Too many requrests'}, {
             'Content-Type': 'application/json'
         });
 
@@ -117,7 +117,7 @@ describe('HttpsClient', function() {
     });
 
     it('rejects bad_referrer statuses', function () {
-        scope.reply(200, {'status': 'bad_referrer', 'message': "The requests referrer is not trusted"}, {
+        scope.reply(200, {'status': 'bad_referrer', 'message': 'The requests referrer is not trusted'}, {
             'Content-Type': 'application/json'
         });
 
@@ -128,7 +128,7 @@ describe('HttpsClient', function() {
     });
 
     it('rejects general_failure statuses', function () {
-        scope.reply(200, {'status': 'general_failure', 'message': "Something has gone wrong"}, {
+        scope.reply(200, {'status': 'general_failure', 'message': 'Something has gone wrong'}, {
             'Content-Type': 'application/json'
         });
 

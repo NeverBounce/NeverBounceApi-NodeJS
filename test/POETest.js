@@ -1,5 +1,5 @@
 const chai = require('chai'),
-    chaiAsPromised = require("chai-as-promised"),
+    chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
     _Errors = require('../src/Errors'),
     NeverBounce = require('../src/NeverBounce');
@@ -18,9 +18,9 @@ describe('POE', function () {
     describe('confirm', function () {
         it('should return a object during a good response', function () {
             scope.reply(200, {
-                "status": "success",
-                "confirmed": true,
-                "execution_time": 499
+                'status': 'success',
+                'confirmed': true,
+                'execution_time': 499
             });
 
             return nb.poe.confirm('support@neverbounce.com', 'valid', 'e3173fdbbdce6bad26522dae792911f2', 'NBPOE-TXN-5942940c09669').should.be.fulfilled
