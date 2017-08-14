@@ -28,7 +28,7 @@ class HttpsClient {
 
             // Get request options
             const opts = this._nb.getRequestOpts(params);
-            opts.headers['User-Agent'] = "NeverBounceApi-NodeJS/" + _Version;
+            opts.headers['User-Agent'] = 'NeverBounceApi-NodeJS/' + _Version;
             opts.headers['Content-Length'] = Buffer.byteLength(query);
 
             // Make request
