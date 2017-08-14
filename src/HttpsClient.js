@@ -2,6 +2,7 @@
 
 const https = require('https');
 const _Error = require('./Errors');
+const _Version = require('../package.json').version;
 
 class HttpsClient {
 
@@ -27,6 +28,7 @@ class HttpsClient {
 
             // Get request options
             const opts = this._nb.getRequestOpts(params);
+            opts.headers['User-Agent'] = "NeverBounceApi-NodeJS/" + _Version;
             opts.headers['Content-Length'] = Buffer.byteLength(query);
 
             // Make request
