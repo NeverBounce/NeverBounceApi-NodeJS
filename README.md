@@ -1,11 +1,24 @@
-NeverBounce API NodeJS Wrapper
----
-[![Build Status](https://travis-ci.org/NeverBounce/NeverBounceApi-NodeJS.svg?branch=master)](https://travis-ci.org/NeverBounce/NeverBounceApi-NodeJS)
+<p align="center"><img src="https://neverbounce-marketing.s3.amazonaws.com/neverbounce_color_600px.png"></p>
+
+<p align="center">
+<a href="https://travis-ci.org/NeverBounce/NeverBounceApi-NodeJS"><img src="https://travis-ci.org/NeverBounce/NeverBounceApi-NodeJS.svg" alt="Build Status"></a>
+<a href="https://codeclimate.com/github/NeverBounce/NeverBounceApi-NodeJS"><img src="https://codeclimate.com/github/NeverBounce/NeverBounceApi-NodeJS/badges/gpa.svg" /></a>
+<a href="https://www.npmjs.com/package/neverbounce"><img src="https://img.shields.io/npm/v/neverbounce.svg" /></a>
+<a href="https://www.npmjs.com/package/neverbounce"><img src="https://img.shields.io/npm/dt/neverbounce.svg" /></a>
+</p>
+
+> This version of the wrapper is for the V4 API currently in beta. Contact support if you'd like to be added to the beta.
+
+> Looking for the V3 API wrapper? Click [here](https://github.com/NeverBounce/NeverBounceApi-NodeJS/tree/v3).
 
 This is the official NeverBounce API NodeJS wrapper. It provides helpful methods to quickly implement our API in your NodeJS applications.
 
+**This package is not suitable for use in the browser! Only use it in server side applications!**
+
 Installation
 ===
+
+> Coming soon
 
 To install use the following command
 
@@ -13,51 +26,13 @@ To install use the following command
 $ npm install neverbounce --save
 ```
 
-Usage
-===
+Running Examples
+---
 
-To start using the wrapper sign up for an account [here](https://app.neverbounce.com/register) and get your api keys [here](https://app.neverbounce.com/settings/api). This wrapper utilizes ES6 Promises to handle the API calls.
-
-To initialize the wrapper use the following snippet, substituting in your `api key` and `api secrete key`...
+To run the examples contained in this project create a `.env.js` file in the root that contains the following (substituting in your own API key):
 
 ```
-var NeverBounce = require('neverbounce')({
-    apiKey: API_KEY,
-    apiSecret: API_SECRET_KEY
-});
-```
-
-You can now access the verify method from this object. To validate a single email use the following...
-
-```
-NeverBounce.single.verify(EMAIL_TO_VALIDATE).then(
-    function(result) {
-        // do stuff
-    },
-    function(error) {
-        // errors will bubble up through the reject method of the promise.
-        // you'll want to console.log them otherwise it'll fail silently
-    }
-);
-```
-
-The `result` returned in from the verification promise will be a `Result` object. It provides several helper methods documented below...
-
-```
-result.getResult(); // Numeric result code; ex: 0, 1, 2, 3, 4
-result.getResultTextCode(); // Textual result code; ex: valid, invalid, disposable, catchall, unknown
-result.is(0); // Returns true if result is valid
-result.is([0,3,4]); // Returns true if result is valid, catchall, or unknown
-result.not(1); // Returns true if result is not invalid
-result.not([1,2]); // Returns true if result is not invalid or disposable
-```
-
-To set a client side timeout use the `timeout` config option.
-
-```
-var NeverBounce = require('neverbounce')({
-    apiKey: API_KEY,
-    apiSecret: API_SECRET_KEY,
-    timeout: 30000 // timeout in milliseconds
-});
+module.exports = {
+  apiKey: 'Enter your api key here',
+};
 ```

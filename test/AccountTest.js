@@ -2,7 +2,6 @@ const chai = require('chai'),
     chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
     _Errors = require('../src/Errors'),
-    VerificationObject = require('../src/VerificationObject'),
     NeverBounce = require('../src/NeverBounce');
 
 chai.use(chaiAsPromised);
@@ -10,14 +9,14 @@ chai.should();
 
 // Setup node request mock
 const scope = nock('https://api.neverbounce.com')
-    .get('/v4/single/check');
+    .get('/v4/account/info');
 
 // Create NeverBounce object
 const nb = new NeverBounce();
 
-describe('Single', function () {
-    describe('verify', function () {
-        it('should return an instance of VerificationObject with a good response', function () {
+describe('Account', function () {
+    describe('info', function () {
+        it('should return a object during a good response', function () {
             scope.reply(200, {
                 'status': 'success',
                 'result': 'valid',
@@ -30,8 +29,8 @@ describe('Single', function () {
                 'execution_time': 499
             });
 
-            return nb.single.verify('support@neverbounce.com').should.be.fulfilled
-                .then(resp => resp.should.be.an.instanceOf(VerificationObject));
+            return nb.account.info().should.be.fulfilled
+                .then(resp => resp.should.be.a('Object'));
         });
     });
 });
