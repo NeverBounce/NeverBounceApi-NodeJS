@@ -10,8 +10,10 @@ Installation
 To install use the following command
 
 ```
-$ npm install neverbounce --save
+$ npm install neverbounce@3.0.0 --save
 ```
+
+> This package was previously versioned as `0.2.x`, we have update the version number to `3.0.x` to align API & Wrapper versions
 
 Usage
 ===
