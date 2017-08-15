@@ -16,7 +16,7 @@ const scope = nock('https://api.neverbounce.com')
 const nb = new NeverBounce();
 
 describe('Single', function () {
-    describe('verify', function () {
+    describe('check', function () {
         it('should return an instance of VerificationObject with a good response', function () {
             scope.reply(200, {
                 'status': 'success',
@@ -30,7 +30,7 @@ describe('Single', function () {
                 'execution_time': 499
             });
 
-            return nb.single.verify('support@neverbounce.com').should.be.fulfilled
+            return nb.single.check('support@neverbounce.com').should.be.fulfilled
                 .then(resp => resp.should.be.an.instanceOf(VerificationObject));
         });
     });

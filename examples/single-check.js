@@ -4,7 +4,7 @@ const NeverBounce = require('../src/NeverBounce.js');
 const client = new NeverBounce(require('../.env'));
 
 // Verify an email
-client.single.verify('mike@neverbounce.com', true, true).then(
+client.single.check('mike@neverbounce.com', true, true).then(
     result => {
         console.log('Result: ' + result.getResult());
         console.log('Result (numeric): ' + result.getNumericResult());
