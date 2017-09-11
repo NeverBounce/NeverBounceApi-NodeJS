@@ -90,7 +90,7 @@ class HttpsClient {
                 } catch (err) {
                     return reject(
                         new _Error(
-                            _Error.HttpClientError,
+                            _Error.GeneralError,
                             'The response from NeverBounce was unable '
                             + 'to be parsed as json. Try the request '
                             + 'again, if this error persists'
@@ -101,10 +101,11 @@ class HttpsClient {
                 }
 
                 // Check if response was able to be decoded
+                // (some versions of node don't throw an error when JSON.parse fails)
                 if (!decoded) {
                     return reject(
                         new _Error(
-                            _Error.HttpClientError,
+                            _Error.GeneralError,
                             'The response from NeverBounce was unable '
                             + 'to be parsed as json. Try the request '
                             + 'again, if this error persists'
@@ -118,7 +119,7 @@ class HttpsClient {
                 if (decoded.status === undefined || (decoded.status !== 'success' && decoded.message === undefined)) {
                     return reject(
                         new _Error(
-                            _Error.HttpClientError,
+                            _Error.GeneralError,
                             'The response from server is incomplete. '
                             + 'Either a status code was not included or '
                             + 'the an error was returned without an error '
@@ -132,62 +133,27 @@ class HttpsClient {
 
                 // Handle other success statuses
                 if (decoded.status !== 'success') {
-                    switch (decoded.status) {
-                        case 'auth_failure':
-                            return reject(
-                                new _Error(
-                                    _Error.AuthError,
-                                    'We were unable to authenticate your request. '
-                                    + 'The following information was supplied: '
-                                    + `${decoded.message}`
-                                    + '\n\n(auth_failure)'
-                                )
-                            );
-
-                        case 'temp_unavail':
-                            return reject(
-                                new _Error(
-                                    _Error.GeneralError,
-                                    'We were unable to complete your request. '
-                                    + 'The following information was supplied: '
-                                    + `${decoded.message}`
-                                    + '\n\n(temp_unavail)'
-                                )
-                            );
-
-                        case 'throttle_triggered':
-                            return reject(
-                                new _Error(
-                                    _Error.ThrottleError,
-                                    'We were unable to complete your request. '
-                                    + 'The following information was supplied: '
-                                    + `${decoded.message}`
-                                    + '\n\n(throttle_triggered)'
-                                )
-                            );
-
-                        case 'bad_referrer':
-                            return reject(
-                                new _Error(
-                                    _Error.BadReferrerError,
-                                    'We were unable to complete your request. '
-                                    + 'The following information was supplied: '
-                                    + `${decoded.message}`
-                                    + '\n\n(bad_referrer)'
-                                )
-                            );
-
-                        case 'general_failure':
-                        default:
-                            return reject(
-                                new _Error(
-                                    _Error.GeneralError,
-                                    'We were unable to complete your request. '
-                                    + 'The following information was supplied: '
-                                    + `${decoded.message}`
-                                    + `\n\n(${decoded.status})`
-                                )
-                            );
+                    let errorType = _Error._lut[decoded.status] || _Error.GeneralError;
+                    if(errorType === _Error.AuthError) {
+                        return reject(
+                            new _Error(
+                                _Error.AuthError,
+                                'We were unable to authenticate your request. '
+                                + 'The following information was supplied: '
+                                + `${decoded.message}`
+                                + '\n\n(auth_failure)'
+                            )
+                        );
+                    } else {
+                        return reject(
+                            new _Error(
+                                errorType,
+                                'We were unable to complete your request. '
+                                + 'The following information was supplied: '
+                                + `${decoded.message}`
+                                + `\n\n(${decoded.status})`
+                            )
+                        );
                     }
                 }
 

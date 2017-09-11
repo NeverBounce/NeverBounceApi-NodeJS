@@ -68,7 +68,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.HttpClientError})
+                err => err.should.contain({'type': _Errors.GeneralError})
             )
     });
 
@@ -79,7 +79,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.HttpClientError})
+                err => err.should.contain({'type': _Errors.GeneralError})
             )
     });
 
