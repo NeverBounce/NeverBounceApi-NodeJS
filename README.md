@@ -7,8 +7,6 @@
 <a href="https://www.npmjs.com/package/neverbounce"><img src="https://img.shields.io/npm/dt/neverbounce.svg" /></a>
 </p>
 
-> This version of the wrapper is for the V4 API currently in beta. Contact support if you'd like to be added to the beta.
-
 > Looking for the V3 API wrapper? Click [here](https://github.com/NeverBounce/NeverBounceApi-NodeJS/tree/v3).
 
 This is the official NeverBounce API NodeJS wrapper. It provides helpful methods to quickly implement our API in your NodeJS applications.
