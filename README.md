@@ -16,21 +16,45 @@ This is the official NeverBounce API NodeJS wrapper. It provides helpful methods
 Installation
 ===
 
-> Coming soon
-
 To install use the following command
 
-```
+```bash
 $ npm install neverbounce --save
 ```
+
+Basic Usage
+---
+
+```js
+const NeverBounce = require('../src/NeverBounce.js');
+
+// Initialize NeverBounce client
+const client = new NeverBounce('Insert your API key');
+
+// Verify an email
+client.single.check('support@neverbounce.com').then(
+    result => {
+        console.log('Result: ' + result.getResult());
+    },
+    err => console.log('ERROR: ' + err.message)
+);
+```
+
+For more information you can check out the `/examples` directory contained within the repository or visit our official documentation [here](https://developers.neverbounce.com/v4.0/reference).
 
 Running Examples
 ---
 
-To run the examples contained in this project create a `.env.js` file in the root that contains the following (substituting in your own API key):
+There a several examples contained within the `/examples` directory included in this repo. To run these examples; first create a `.env.js` file in the project root containing the following text (substituting in your own API key):
 
-```
+```js
 module.exports = {
   apiKey: 'Enter your api key here',
 };
+```
+
+Once that file has been created you can run the examples with the following command, replacing the script name with the specific example you intend to run.
+
+```bash
+node ./examples/account-info.js
 ```
