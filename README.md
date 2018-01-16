@@ -29,7 +29,7 @@ Basic Usage
 const NeverBounce = require('../src/NeverBounce.js');
 
 // Initialize NeverBounce client
-const client = new NeverBounce('Insert your API key');
+const client = new NeverBounce('secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 
 // Verify an email
 client.single.check('support@neverbounce.com').then(
@@ -40,6 +40,8 @@ client.single.check('support@neverbounce.com').then(
 );
 ```
 
+>**The API username and secret key used to authenticate V3 API requests will not work to authenticate V4 API requests.** If you are attempting to authenticate your request with the 8 character username or 12-16 character secret key the request will return an `auth_failure` error. The API key used for the V4 API will look like the following: `secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`. To create new V4 API credentials please go [here](https://app.neverbounce.com/apps/custom-integration/new).
+
 For more information you can check out the `/examples` directory contained within the repository or visit our official documentation [here](https://developers.neverbounce.com/v4.0/reference).
 
 Running Examples
@@ -49,7 +51,7 @@ There a several examples contained within the `/examples` directory included in 
 
 ```js
 module.exports = {
-  apiKey: 'Enter your api key here',
+  apiKey: 'secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 };
 ```
 
