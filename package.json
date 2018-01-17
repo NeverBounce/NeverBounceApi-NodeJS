@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "mocha",
-    "lint": "./node_modules/.bin/eslint ./src/* --fix"
+    "lint": "./node_modules/.bin/eslint ./src/*",
+    "lint:fix": "./node_modules/.bin/eslint ./src/* --fix"
   },
   "keywords": [
     "email",
@@ -27,9 +28,6 @@
   "homepage": "https://neverbounce.com",
   "license": "MIT",
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^7.2.3",
-    "babel-preset-es2015": "^6.24.1",
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
     "eslint": "^4.3.0",
