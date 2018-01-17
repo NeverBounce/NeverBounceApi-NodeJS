@@ -2,7 +2,7 @@
   "name": "neverbounce",
   "version": "4.1.2",
   "description": "An API wrapper for the NeverBounce API",
-  "main": "lib/NeverBounce.js",
+  "main": "src/NeverBounce.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
