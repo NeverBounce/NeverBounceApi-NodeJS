@@ -77,25 +77,25 @@ describe('NeverBounce SDK', function () {
      */
     describe('Helpers/Constants', function() {
         describe('VerificationObject Helpers', function() {
-            it('exposes numeric result code definitions', function() {
-                assert.equal(NeverBounce.results.numericCodes.valid, 0);
-                assert.equal(NeverBounce.results.numericCodes.invalid, 1);
-                assert.equal(NeverBounce.results.numericCodes.disposable, 2);
-                assert.equal(NeverBounce.results.numericCodes.catchall, 3);
-                assert.equal(NeverBounce.results.numericCodes.unknown, 4);
+            it('exposes text result code definitions', function() {
+                assert.equal(NeverBounce.result.valid, 0);
+                assert.equal(NeverBounce.result.invalid, 1);
+                assert.equal(NeverBounce.result.disposable, 2);
+                assert.equal(NeverBounce.result.catchall, 3);
+                assert.equal(NeverBounce.result.unknown, 4);
             });
 
-            it('exposes text result code definitions', function() {
-                assert.equal(NeverBounce.results.textCodes[0], 'valid');
-                assert.equal(NeverBounce.results.textCodes[1], 'invalid');
-                assert.equal(NeverBounce.results.textCodes[2], 'disposable');
-                assert.equal(NeverBounce.results.textCodes[3], 'catchall');
-                assert.equal(NeverBounce.results.textCodes[4], 'unknown');
+            it('exposes numeric result code definitions', function() {
+                assert.equal(NeverBounce.result[0], 'valid');
+                assert.equal(NeverBounce.result[1], 'invalid');
+                assert.equal(NeverBounce.result[2], 'disposable');
+                assert.equal(NeverBounce.result[3], 'catchall');
+                assert.equal(NeverBounce.result[4], 'unknown');
             });
 
             it('exposes verification result flag definitions', function() {
-                assert.equal(NeverBounce.results.flags.academic_host, 'acedemic_host'); // API returns misspelling, kept for backwards compat
-                assert.containsAllKeys(NeverBounce.results.flags, [
+                assert.equal(NeverBounce.result.flags.academic_host, 'acedemic_host'); // API returns misspelling, kept for backwards compat
+                assert.containsAllKeys(NeverBounce.result.flags, [
                     'has_dns',
                     'has_dns_mx',
                     'bad_syntax',

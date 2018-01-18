@@ -70,20 +70,21 @@ VerificationObject.unknown = 4;
  * @since 4.1.4
  */
 VerificationObject.helpers = {
-    numericCodes: {
-        valid: VerificationObject.valid,
-        invalid: VerificationObject.invalid,
-        disposable: VerificationObject.disposable,
-        catchall: VerificationObject.catchall,
-        unknown: VerificationObject.unknown,
-    },
-    textCodes: {
-        [VerificationObject.valid]: 'valid',
-        [VerificationObject.invalid]: 'invalid',
-        [VerificationObject.disposable]: 'disposable',
-        [VerificationObject.catchall]: 'catchall',
-        [VerificationObject.unknown]: 'unknown',
-    },
+
+    // Numerically indexed
+    [VerificationObject.valid]: 'valid',
+    [VerificationObject.invalid]: 'invalid',
+    [VerificationObject.disposable]: 'disposable',
+    [VerificationObject.catchall]: 'catchall',
+    [VerificationObject.unknown]: 'unknown',
+
+    // Text indexed
+    valid: VerificationObject.valid,
+    invalid: VerificationObject.invalid,
+    disposable: VerificationObject.disposable,
+    catchall: VerificationObject.catchall,
+    unknown: VerificationObject.unknown,
+
     flags: {
         has_dns: 'has_dns',
         has_dns_mx: 'has_dns_mx',
@@ -112,6 +113,12 @@ VerificationObject.helpers = {
 /**
  * @deprecated 4.1.4 Will be removed in next minor release
  */
-VerificationObject.numericCodes = VerificationObject.helpers.numericCodes;
+VerificationObject.numericCodes = {
+    valid: VerificationObject.valid,
+    invalid: VerificationObject.invalid,
+    disposable: VerificationObject.disposable,
+    catchall: VerificationObject.catchall,
+    unknown: VerificationObject.unknown,
+};
 
 module.exports = VerificationObject;
