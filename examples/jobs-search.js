@@ -7,7 +7,7 @@ const client = new NeverBounce(require('../.env'));
 client.jobs.search({
 //    'job_id': 10000, // Filter jobs based on id
 //    'filename': 'Book1.csv', // Filter jobs based on filename
-//    'job_status': 'complete', // Show completed jobs only
+//    'job_status': NeverBounce.job.status.complete, // Show completed jobs only
 //    'page': 1, // Page to start from
 //    'items_per_page': 10, // Number of items per page
 }).then(

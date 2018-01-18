@@ -17,7 +17,7 @@ client.jobs.create(
             'name': 'Bob McInvalid'
         }
     ],
-    'supplied', // Either `supplied` or `remote_url`
+    NeverBounce.job.inputType.supplied, // Either `supplied` or `remote_url`
     'Created from Array.csv' // Friendly name that can be used to identify job
 ).then(
     resp => console.log('Job ID: ' + resp.job_id),
