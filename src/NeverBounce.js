@@ -97,4 +97,10 @@ NeverBounce.results = require('./VerificationObject').helpers;
  */
 NeverBounce.job = require('./Jobs').helpers;
 
+/**
+ * @since 4.1.4
+ * @type {_Error}
+ */
+NeverBounce.errors = require('./Errors');
+
 module.exports = NeverBounce;

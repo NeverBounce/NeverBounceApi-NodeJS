@@ -141,5 +141,17 @@ describe('NeverBounce SDK', function () {
                 ]);
             });
         });
+
+        describe('Errors Object', function() {
+            it('exposes error static types', function() {
+                assert.hasAllKeys(NeverBounce.errors, [
+                    'AuthError',
+                    'BadReferrerError',
+                    'GeneralError',
+                    'ThrottleError',
+                    '_lut'
+                ]);
+            });
+        });
     });
 });
