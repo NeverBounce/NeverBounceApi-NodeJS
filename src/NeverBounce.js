@@ -92,4 +92,9 @@ NeverBounce.defaultConfig = {
  */
 NeverBounce.results = require('./VerificationObject').helpers;
 
+/**
+ * @since 4.1.4
+ */
+NeverBounce.job = require('./Jobs').helpers;
+
 module.exports = NeverBounce;

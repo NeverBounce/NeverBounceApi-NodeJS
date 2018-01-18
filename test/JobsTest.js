@@ -1,4 +1,5 @@
 const chai = require('chai'),
+    assert = chai.assert,
     chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
     _Errors = require('../src/Errors'),
@@ -252,6 +253,17 @@ describe('Jobs', function () {
 
             return nb.jobs.delete(150970).should.be.fulfilled
                 .then(resp => resp.should.be.an('object'));
+        });
+    });
+
+    /**
+     * @since 4.1.4
+     */
+    describe('backwards compat', function () {
+        it('input types should be accessible from Jobs Object', function () {
+            const jobs = require('../src/Jobs');
+            assert.equal(jobs.remote, 'remote_url');
+            assert.equal(jobs.supplied, 'supplied');
         });
     });
 });

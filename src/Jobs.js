@@ -158,4 +158,25 @@ class Jobs extends HttpsClient {
 Jobs.remote = 'remote_url';
 Jobs.supplied = 'supplied';
 
+/**
+ * @since 4.1.4
+ */
+Jobs.helpers = {
+    inputType: {
+        remote: Jobs.remote,
+        supplied: Jobs.supplied
+    },
+    status: {
+        under_review: 'under_review',
+        queued: 'queued',
+        failed: 'failed',
+        complete: 'complete',
+        running: 'running',
+        parsing: 'parsing',
+        waiting: 'waiting',
+        waiting_analyzed: 'waiting_analyzed',
+        uploading: 'uploading'
+    }
+};
+
 module.exports = Jobs;

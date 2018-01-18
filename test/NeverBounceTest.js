@@ -83,7 +83,7 @@ describe('NeverBounce SDK', function () {
                 assert.equal(NeverBounce.results.numericCodes.disposable, 2);
                 assert.equal(NeverBounce.results.numericCodes.catchall, 3);
                 assert.equal(NeverBounce.results.numericCodes.unknown, 4);
-            })
+            });
 
             it('exposes text result code definitions', function() {
                 assert.equal(NeverBounce.results.textCodes[0], 'valid');
@@ -91,7 +91,7 @@ describe('NeverBounce SDK', function () {
                 assert.equal(NeverBounce.results.textCodes[2], 'disposable');
                 assert.equal(NeverBounce.results.textCodes[3], 'catchall');
                 assert.equal(NeverBounce.results.textCodes[4], 'unknown');
-            })
+            });
 
             it('exposes verification result flag definitions', function() {
                 assert.equal(NeverBounce.results.flags.academic_host, 'acedemic_host'); // API returns misspelling, kept for backwards compat
@@ -118,7 +118,28 @@ describe('NeverBounce SDK', function () {
                     'smtp_connectable',
                     'spamtrap_network',
                 ]);
-            })
-        })
+            });
+        });
+
+        describe('Jobs Helpers', function() {
+            it('exposes input type helpers', function() {
+                assert.equal(NeverBounce.job.inputType.remote, 'remote_url');
+                assert.equal(NeverBounce.job.inputType.supplied, 'supplied');
+            });
+
+            it('exposes job status helpers', function() {
+                assert.containsAllKeys(NeverBounce.job.status, [
+                    'under_review',
+                    'queued',
+                    'failed',
+                    'complete',
+                    'running',
+                    'parsing',
+                    'waiting',
+                    'waiting_analyzed',
+                    'uploading'
+                ]);
+            });
+        });
     });
 });
