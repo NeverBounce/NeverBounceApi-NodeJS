@@ -2,7 +2,6 @@ const chai = require('chai'),
     assert = chai.assert,
     chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
-    _Errors = require('../src/Errors'),
     NeverBounce = require('../src/NeverBounce');
 
 chai.use(chaiAsPromised);

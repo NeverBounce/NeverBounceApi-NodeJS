@@ -1,7 +1,6 @@
 const chai = require('chai'),
     chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
-    _Errors = require('../src/Errors'),
     NeverBounce = require('../src/NeverBounce'),
     HttpsClient = require('../src/HttpsClient');
 
@@ -46,7 +45,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.GeneralError})
+                err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
     });
 
@@ -57,7 +56,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.GeneralError})
+                err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
     });
 
@@ -68,7 +67,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.GeneralError})
+                err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
     });
 
@@ -79,7 +78,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.GeneralError})
+                err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
     });
 
@@ -90,7 +89,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.AuthError})
+                err => err.should.contain({'type': NeverBounce.errors.AuthError})
             )
     });
 
@@ -101,7 +100,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.GeneralError})
+                err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
     });
 
@@ -112,7 +111,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.ThrottleError})
+                err => err.should.contain({'type': NeverBounce.errors.ThrottleError})
             )
     });
 
@@ -123,7 +122,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.BadReferrerError})
+                err => err.should.contain({'type': NeverBounce.errors.BadReferrerError})
             )
     });
 
@@ -134,7 +133,7 @@ describe('HttpsClient', function() {
 
         return http.request({path: '/v4/test'}).should.be.rejected
             .then(
-                err => err.should.contain({'type': _Errors.GeneralError})
+                err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
     });
 });

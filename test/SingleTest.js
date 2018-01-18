@@ -1,7 +1,6 @@
 const chai = require('chai'),
     chaiAsPromised = require('chai-as-promised'),
     nock = require('nock'),
-    _Errors = require('../src/Errors'),
     VerificationObject = require('../src/VerificationObject'),
     NeverBounce = require('../src/NeverBounce');
 
