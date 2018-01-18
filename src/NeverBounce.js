@@ -87,4 +87,9 @@ NeverBounce.defaultConfig = {
     }
 };
 
+/**
+ * @since 4.1.4
+ */
+NeverBounce.results = require('./VerificationObject').helpers;
+
 module.exports = NeverBounce;

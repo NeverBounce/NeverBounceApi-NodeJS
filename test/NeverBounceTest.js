@@ -1,4 +1,4 @@
-const assert = require('assert'),
+const assert = require('chai').assert,
     NeverBounce = require('../src/NeverBounce');
 
 describe('NeverBounce SDK', function () {
@@ -70,5 +70,55 @@ describe('NeverBounce SDK', function () {
                 }
             });
         });
+    });
+
+    /**
+     * @since 4.1.4
+     */
+    describe('Helpers/Constants', function() {
+        describe('VerificationObject Helpers', function() {
+            it('exposes numeric result code definitions', function() {
+                assert.equal(NeverBounce.results.numericCodes.valid, 0);
+                assert.equal(NeverBounce.results.numericCodes.invalid, 1);
+                assert.equal(NeverBounce.results.numericCodes.disposable, 2);
+                assert.equal(NeverBounce.results.numericCodes.catchall, 3);
+                assert.equal(NeverBounce.results.numericCodes.unknown, 4);
+            })
+
+            it('exposes text result code definitions', function() {
+                assert.equal(NeverBounce.results.textCodes[0], 'valid');
+                assert.equal(NeverBounce.results.textCodes[1], 'invalid');
+                assert.equal(NeverBounce.results.textCodes[2], 'disposable');
+                assert.equal(NeverBounce.results.textCodes[3], 'catchall');
+                assert.equal(NeverBounce.results.textCodes[4], 'unknown');
+            })
+
+            it('exposes verification result flag definitions', function() {
+                assert.equal(NeverBounce.results.flags.academic_host, 'acedemic_host'); // API returns misspelling, kept for backwards compat
+                assert.containsAllKeys(NeverBounce.results.flags, [
+                    'has_dns',
+                    'has_dns_mx',
+                    'bad_syntax',
+                    'free_email_host',
+                    'profanity',
+                    'role_account',
+                    'disposable_email',
+                    'government_host',
+                    'academic_host',
+                    'military_host',
+                    'international_host',
+                    'squatter_host',
+                    'spelling_mistake',
+                    'bad_dns',
+                    'temporary_dns_error',
+                    'connect_fails',
+                    'accepts_all',
+                    'contains_alias',
+                    'contains_subdomain',
+                    'smtp_connectable',
+                    'spamtrap_network',
+                ]);
+            })
+        })
     });
 });

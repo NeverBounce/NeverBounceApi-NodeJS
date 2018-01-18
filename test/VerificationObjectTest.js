@@ -1,4 +1,4 @@
-const assert = require('assert'),
+const assert = require('chai').assert,
     VerificationObject = require('../src/VerificationObject');
 
 describe('VerificationObject', function () {
@@ -81,6 +81,27 @@ describe('VerificationObject', function () {
 
             assert.equal(verification.hasFlag('bad_syntax'), true);
             assert.equal(verification.hasFlag('has_dns'), false);
+        });
+    });
+
+    /**
+     * @since 4.1.4
+     */
+    describe('backwards compat', function () {
+        it('numericCodes object should be accessible from VerificationObject', function () {
+            assert.equal(VerificationObject.numericCodes.valid, 0);
+            assert.equal(VerificationObject.numericCodes.invalid, 1);
+            assert.equal(VerificationObject.numericCodes.disposable, 2);
+            assert.equal(VerificationObject.numericCodes.catchall, 3);
+            assert.equal(VerificationObject.numericCodes.unknown, 4);
+        });
+
+        it('result code definitions should be accessible from VerificationObject', function () {
+            assert.equal(VerificationObject.valid, 0);
+            assert.equal(VerificationObject.invalid, 1);
+            assert.equal(VerificationObject.disposable, 2);
+            assert.equal(VerificationObject.catchall, 3);
+            assert.equal(VerificationObject.unknown, 4);
         });
     });
 });
