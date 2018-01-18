@@ -19,7 +19,7 @@ class VerificationObject {
      * @returns {*}
      */
     getNumericResult() {
-        return VerificationObject.numericCodes[this.getResult()];
+        return VerificationObject[this.getResult()];
     }
 
     /**
@@ -66,12 +66,59 @@ VerificationObject.disposable = 2;
 VerificationObject.catchall = 3;
 VerificationObject.unknown = 4;
 
+/**
+ * @since 4.1.4
+ */
+VerificationObject.helpers = {
+
+    // Numerically indexed
+    [VerificationObject.valid]: 'valid',
+    [VerificationObject.invalid]: 'invalid',
+    [VerificationObject.disposable]: 'disposable',
+    [VerificationObject.catchall]: 'catchall',
+    [VerificationObject.unknown]: 'unknown',
+
+    // Text indexed
+    valid: VerificationObject.valid,
+    invalid: VerificationObject.invalid,
+    disposable: VerificationObject.disposable,
+    catchall: VerificationObject.catchall,
+    unknown: VerificationObject.unknown,
+
+    flags: {
+        has_dns: 'has_dns',
+        has_dns_mx: 'has_dns_mx',
+        bad_syntax: 'bad_syntax',
+        free_email_host: 'free_email_host',
+        profanity: 'profanity',
+        role_account: 'role_account',
+        disposable_email: 'disposable_email',
+        government_host: 'government_host',
+        academic_host: 'acedemic_host', // API returns the misspelling, kept for backwards compat
+        military_host: 'military_host',
+        international_host: 'international_host',
+        squatter_host: 'squatter_host',
+        spelling_mistake: 'spelling_mistake',
+        bad_dns: 'bad_dns',
+        temporary_dns_error: 'temporary_dns_error',
+        connect_fails: 'connect_fails',
+        accepts_all: 'accepts_all',
+        contains_alias: 'contains_alias',
+        contains_subdomain: 'contains_subdomain',
+        smtp_connectable: 'smtp_connectable',
+        spamtrap_network: 'spamtrap_network',
+    }
+};
+
+/**
+ * @deprecated 4.1.4 Will be removed in next minor release
+ */
 VerificationObject.numericCodes = {
-    'valid': VerificationObject.valid,
-    'invalid': VerificationObject.invalid,
-    'disposable': VerificationObject.disposable,
-    'catchall': VerificationObject.catchall,
-    'unknown': VerificationObject.unknown,
+    valid: VerificationObject.valid,
+    invalid: VerificationObject.invalid,
+    disposable: VerificationObject.disposable,
+    catchall: VerificationObject.catchall,
+    unknown: VerificationObject.unknown,
 };
 
 module.exports = VerificationObject;

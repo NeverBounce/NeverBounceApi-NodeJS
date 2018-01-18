@@ -1,4 +1,4 @@
-const assert = require('assert'),
+const assert = require('chai').assert,
     NeverBounce = require('../src/NeverBounce');
 
 describe('NeverBounce SDK', function () {
@@ -68,6 +68,89 @@ describe('NeverBounce SDK', function () {
                     'Content-Type': 'application/json',
                     'User-Agent': 'NeverBounce-Node/' + require('../package.json').version
                 }
+            });
+        });
+    });
+
+    /**
+     * @since 4.1.4
+     */
+    describe('Helpers/Constants', function() {
+        describe('VerificationObject Helpers', function() {
+            it('exposes text result code definitions', function() {
+                assert.equal(NeverBounce.result.valid, 0);
+                assert.equal(NeverBounce.result.invalid, 1);
+                assert.equal(NeverBounce.result.disposable, 2);
+                assert.equal(NeverBounce.result.catchall, 3);
+                assert.equal(NeverBounce.result.unknown, 4);
+            });
+
+            it('exposes numeric result code definitions', function() {
+                assert.equal(NeverBounce.result[0], 'valid');
+                assert.equal(NeverBounce.result[1], 'invalid');
+                assert.equal(NeverBounce.result[2], 'disposable');
+                assert.equal(NeverBounce.result[3], 'catchall');
+                assert.equal(NeverBounce.result[4], 'unknown');
+            });
+
+            it('exposes verification result flag definitions', function() {
+                assert.equal(NeverBounce.result.flags.academic_host, 'acedemic_host'); // API returns misspelling, kept for backwards compat
+                assert.containsAllKeys(NeverBounce.result.flags, [
+                    'has_dns',
+                    'has_dns_mx',
+                    'bad_syntax',
+                    'free_email_host',
+                    'profanity',
+                    'role_account',
+                    'disposable_email',
+                    'government_host',
+                    'academic_host',
+                    'military_host',
+                    'international_host',
+                    'squatter_host',
+                    'spelling_mistake',
+                    'bad_dns',
+                    'temporary_dns_error',
+                    'connect_fails',
+                    'accepts_all',
+                    'contains_alias',
+                    'contains_subdomain',
+                    'smtp_connectable',
+                    'spamtrap_network',
+                ]);
+            });
+        });
+
+        describe('Jobs Helpers', function() {
+            it('exposes input type helpers', function() {
+                assert.equal(NeverBounce.job.inputType.remote, 'remote_url');
+                assert.equal(NeverBounce.job.inputType.supplied, 'supplied');
+            });
+
+            it('exposes job status helpers', function() {
+                assert.containsAllKeys(NeverBounce.job.status, [
+                    'under_review',
+                    'queued',
+                    'failed',
+                    'complete',
+                    'running',
+                    'parsing',
+                    'waiting',
+                    'waiting_analyzed',
+                    'uploading'
+                ]);
+            });
+        });
+
+        describe('Errors Object', function() {
+            it('exposes error static types', function() {
+                assert.hasAllKeys(NeverBounce.errors, [
+                    'AuthError',
+                    'BadReferrerError',
+                    'GeneralError',
+                    'ThrottleError',
+                    '_lut'
+                ]);
             });
         });
     });
