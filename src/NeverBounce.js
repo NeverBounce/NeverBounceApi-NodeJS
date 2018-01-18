@@ -89,17 +89,19 @@ NeverBounce.defaultConfig = {
 
 /**
  * @since 4.1.4
+ * @type {{valid: number, invalid: number, disposable: number, catchall: number, unknown: number, flags: {has_dns: string, has_dns_mx: string, bad_syntax: string, free_email_host: string, profanity: string, role_account: string, disposable_email: string, government_host: string, academic_host: string, military_host: string, international_host: string, squatter_host: string, spelling_mistake: string, bad_dns: string, temporary_dns_error: string, connect_fails: string, accepts_all: string, contains_alias: string, contains_subdomain: string, smtp_connectable: string, spamtrap_network: string}}}
  */
 NeverBounce.result = require('./VerificationObject').helpers;
 
 /**
  * @since 4.1.4
+ * @type {{inputType: {remote: string, supplied: string}, status: {under_review: string, queued: string, failed: string, complete: string, running: string, parsing: string, waiting: string, waiting_analyzed: string, uploading: string}}}
  */
 NeverBounce.job = require('./Jobs').helpers;
 
 /**
  * @since 4.1.4
- * @type {_Error}
+ * @type {{AuthError: string, BadReferrerError: string, GeneralError: string, ThrottleError: string, _lut: {general_failure: string, auth_failure: string, bad_referrer: string, throttle_triggered: string}}}
  */
 NeverBounce.errors = require('./Errors');
 

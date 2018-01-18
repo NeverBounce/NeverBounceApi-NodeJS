@@ -25,6 +25,8 @@ $ npm install neverbounce --save
 Basic Usage
 ---
 
+>**The API username and secret key used to authenticate V3 API requests will not work to authenticate V4 API requests.** If you are attempting to authenticate your request with the 8 character username or 12-16 character secret key the request will return an `auth_failure` error. The API key used for the V4 API will look like the following: `secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`. To create new V4 API credentials please go [here](https://app.neverbounce.com/apps/custom-integration/new).
+
 ```js
 const NeverBounce = require('../src/NeverBounce.js');
 
@@ -34,15 +36,43 @@ const client = new NeverBounce('secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
 // Verify an email
 client.single.check('support@neverbounce.com').then(
     result => {
-        console.log('Result: ' + result.getResult());
+        console.log('Result: ' + result.getResult()); // prints: "valid"
+        // See VerificationObject for additional helper methods for working with
+        // verification results from the the single method
     },
-    err => console.log('ERROR: ' + err.message)
+    err => {
+        // Errors are returned by the Promise in the form of rejection. To 
+        // gracefully handle errors you can use a switch or if statements to 
+        // catch specific error types.
+        switch(err.type) {
+            case NeverBounce.errors.AuthError:
+                // The API credentials used are bad, have you reset them recently?
+                break;
+            case NeverBounce.errors.BadReferrerError:
+                // The script is being used from an unauthorized source, you may need to
+                // adjust your app's settings to allow it to be used from here
+                break;
+            case NeverBounce.errors.ThrottleError:
+                // Too many requests in a short amount of time, try again shortly or adjust
+                // your rate limit settings for this application in the dashboard
+                break;
+            case NeverBounce.errors.GeneralError:
+                // A non recoverable API error occurred check the message for details
+                break;
+            default:
+                // Other non specific errors
+                break;
+        }
+    }
 );
 ```
 
->**The API username and secret key used to authenticate V3 API requests will not work to authenticate V4 API requests.** If you are attempting to authenticate your request with the 8 character username or 12-16 character secret key the request will return an `auth_failure` error. The API key used for the V4 API will look like the following: `secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`. To create new V4 API credentials please go [here](https://app.neverbounce.com/apps/custom-integration/new).
-
 For more information you can check out the `/examples` directory contained within the repository or visit our official documentation [here](https://developers.neverbounce.com/v4.0/reference).
+
+Constants
+---
+
+The library exposes several constants that make working with jobs, verification results and errors easier. They can be accessed from the root `NeverBounce` object via the `result`, `job`, and `errors` properties.
 
 Running Examples
 ---
