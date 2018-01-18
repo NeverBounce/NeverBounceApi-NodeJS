@@ -2,6 +2,9 @@
   "name": "neverbounce",
   "version": "4.1.3",
   "description": "An API wrapper for the NeverBounce API",
+  "engines" : { 
+    "node" : ">=4.0" 
+  },
   "main": "src/NeverBounce.js",
   "repository": {
     "type": "git",
