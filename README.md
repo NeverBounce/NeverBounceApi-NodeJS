@@ -31,7 +31,7 @@ Basic Usage
 const NeverBounce = require('../src/NeverBounce.js');
 
 // Initialize NeverBounce client
-const client = new NeverBounce('secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx');
+const client = new NeverBounce({apiKey: 'secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'});
 
 // Verify an email
 client.single.check('support@neverbounce.com').then(
