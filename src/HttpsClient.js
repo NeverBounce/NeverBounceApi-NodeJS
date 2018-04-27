@@ -1,6 +1,6 @@
 'use strict';
 
-const https = require('https');
+const https = require('http');
 const _Error = require('./Errors');
 const _Version = require('../package.json').version;
 
@@ -59,10 +59,16 @@ class HttpsClient {
                 }
 
                 res.setEncoding('utf8');
-                res.on('data', (chunks) => {
-                    return this.parseResponse(chunks, res.headers, res.statusCode)
-                        .then(resp => resolve(resp), err => reject(err));
+
+                let rawData = '';
+                res.on('data', (chunk) => {
+                    rawData += chunk;
                 });
+
+                res.on('end', () => {
+                    return this.parseResponse(rawData, res.headers, res.statusCode)
+                        .then(resp => resolve(resp), err => reject(err));
+                })
             });
 
             req.on('error', (e) => reject(e));
