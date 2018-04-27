@@ -1,6 +1,6 @@
 'use strict';
 
-const https = require('http');
+const https = require('https');
 const _Error = require('./Errors');
 const _Version = require('../package.json').version;
 
