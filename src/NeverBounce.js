@@ -78,6 +78,7 @@ NeverBounce.defaultConfig = {
     apiKey: null,
     timeout: 30000,
     opts: {
+        acceptedType: 'application/json',
         host: 'api.neverbounce.com',
         port: 443,
         headers: {

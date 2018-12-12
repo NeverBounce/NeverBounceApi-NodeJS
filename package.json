@@ -2,8 +2,8 @@
   "name": "neverbounce",
   "version": "4.1.6",
   "description": "An API wrapper for the NeverBounce API",
-  "engines" : { 
-    "node" : ">=4.0" 
+  "engines": {
+    "node": ">=6.0"
   },
   "main": "src/NeverBounce.js",
   "repository": {
@@ -31,13 +31,13 @@
   "homepage": "https://neverbounce.com",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.1.0",
+    "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
-    "eslint": "^4.3.0",
-    "mocha": "^3.4.2",
-    "nock": "^9.0.14"
+    "eslint": "^5.10.0",
+    "mocha": "^5.2.0",
+    "nock": "^10.0.4"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.0"
+    "lodash.merge": "^4.6.1"
   }
 }

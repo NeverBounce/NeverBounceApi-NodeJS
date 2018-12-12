@@ -32,7 +32,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'text/plain'
         });
 
-        return http.request({path: '/v4/test'}).should.be.fulfilled
+        return http.request({path: '/v4/test', acceptedType: 'text/plain'}).should.be.fulfilled
             .then(
                 resp => resp.should.be.a('string').that.is.equal('Hello World!')
             )
