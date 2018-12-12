@@ -20,6 +20,7 @@ describe('NeverBounce SDK', function () {
             assert.notDeepEqual(nb0.getConfig(), NeverBounce.defaultConfig);
             assert.equal(nb0.getConfig().apiKey, 'xxx');
             assert.deepEqual(nb0.getConfig().opts, {
+                acceptedType: 'application/json',
                 host: 'test.neverbounce.com',
                 port: 443,
                 headers: {
@@ -52,6 +53,7 @@ describe('NeverBounce SDK', function () {
         it('should be overridable on a per request basis', function () {
             const nb0 = new NeverBounce();
             assert.deepEqual(nb0.getConfig().opts, {
+                acceptedType: 'application/json',
                 host: 'api.neverbounce.com',
                 port: 443,
                 headers: {
@@ -61,6 +63,7 @@ describe('NeverBounce SDK', function () {
             });
 
             assert.deepEqual(nb0.getRequestOpts({'path': '/health'}), {
+                acceptedType: 'application/json',
                 path: '/health',
                 host: 'api.neverbounce.com',
                 port: 443,

@@ -127,6 +127,7 @@ class Jobs extends HttpsClient {
      */
     download(jobid, query) {
         return this.request({
+            acceptedType: 'application/octet-stream',
             method: 'GET',
             path: '/v4/jobs/download'
         },

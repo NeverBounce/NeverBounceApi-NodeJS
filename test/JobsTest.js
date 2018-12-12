@@ -233,10 +233,14 @@ describe('Jobs', function () {
 
     describe('download', function () {
         it('should return the response', function () {
-            scope.get('/v4/jobs/download').reply(200,
+            scope.get('/v4/jobs/download').reply(
+                200,
                 'id,email,name,email_status'
-            + '"12345","support@neverbounce.com","Fred McValid",valid'
-            + '"12346","invalid@neverbounce.com","Bob McInvalid",invalid');
+                    + '"12345","support@neverbounce.com","Fred McValid",valid'
+                    + '"12346","invalid@neverbounce.com","Bob McInvalid",invalid',
+                {
+                    'content-type': 'application/octet-stream'
+                });
 
             return nb.jobs.download(150970, {}).should.be.fulfilled
                 .then(resp => resp.should.be.a('string'));
