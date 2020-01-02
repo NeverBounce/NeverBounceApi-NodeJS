@@ -1,6 +1,6 @@
 {
   "name": "neverbounce",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "An API wrapper for the NeverBounce API",
   "engines": {
     "node": ">=6.0"
