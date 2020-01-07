@@ -11,6 +11,7 @@ describe('NeverBounce SDK', function () {
         it('should accept arguments in constructor to override defaults', function () {
             const nb0 = new NeverBounce({
                 apiKey: 'xxx',
+                apiVersion: '4.0',
                 timeout: 100,
                 opts: {
                     host: 'test.neverbounce.com'
@@ -19,6 +20,7 @@ describe('NeverBounce SDK', function () {
 
             assert.notDeepEqual(nb0.getConfig(), NeverBounce.defaultConfig);
             assert.equal(nb0.getConfig().apiKey, 'xxx');
+            assert.equal(nb0.getConfig().apiVersion, '4.0');
             assert.deepEqual(nb0.getConfig().opts, {
                 acceptedType: 'application/json',
                 host: 'test.neverbounce.com',
@@ -46,6 +48,11 @@ describe('NeverBounce SDK', function () {
         it('should be able to set API host after initialization', function () {
             nb0.setHost('https://router.neverbounce.com');
             assert.equal(nb0.getConfig().opts.host, 'https://router.neverbounce.com');
+        });
+
+        it('should be able to set API version after initialization', function () {
+            nb0.setApiVersion('4.0');
+            assert.equal(nb0.getConfig().apiVersion, '4.0');
         });
     });
 

@@ -58,6 +58,13 @@ class NeverBounce {
     }
 
     /**
+     * @param version
+     */
+    setApiVersion(version) {
+        this.config.apiVersion = version;
+    }
+
+    /**
      * Loads resources (endpoints) into object
      * e.g. this.single && this.jobs
      * @private
@@ -75,6 +82,7 @@ class NeverBounce {
  * Default config values, these are overwritten when calling the constructor
  */
 NeverBounce.defaultConfig = {
+    apiVersion: null,
     apiKey: null,
     timeout: 30000,
     opts: {

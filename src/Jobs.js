@@ -27,20 +27,27 @@ class Jobs extends HttpsClient {
      * @param runsample
      * @param autoparse
      * @param autostart
+     * @param historicalData
      * @returns {Promise.<*>}
      */
-    create(input, inputlocation, filename, runsample, autoparse, autostart) {
-        return this.request({
-            method: 'POST',
-            path: '/v4/jobs/create'
-        }, {
+    create(input, inputlocation, filename, runsample, autoparse, autostart, historicalData) {
+        const data = {
             'input': input,
             'input_location': inputlocation,
             'filename': filename,
             'run_sample': runsample || null,
             'auto_start': autostart || null,
             'auto_parse': autoparse || null,
-        }).then(
+        };
+
+        if(historicalData !== undefined) {
+            data.request_meta_data = { leverage_historical_data: historicalData ? 1 : 0 };
+        }
+
+        return this.request({
+            method: 'POST',
+            path: '/v4/jobs/create'
+        }, data).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
         )
@@ -69,16 +76,23 @@ class Jobs extends HttpsClient {
      * Starts job waiting to be started
      * @param jobid
      * @param runsample
+     * @param historicalData
      * @returns {Promise.<*>}
      */
-    start(jobid, runsample) {
+    start(jobid, runsample, historicalData) {
+        const data = {
+            'job_id': jobid,
+            'run_sample': runsample || null,
+        };
+
+        if(historicalData !== undefined) {
+            data.request_meta_data = { leverage_historical_data: historicalData ? 1 : 0 };
+        }
+
         return this.request({
             method: 'POST',
             path: '/v4/jobs/start'
-        }, {
-            'job_id': jobid,
-            'run_sample': runsample || null,
-        }).then(
+        }, data).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
         )

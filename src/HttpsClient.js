@@ -20,8 +20,13 @@ class HttpsClient {
     request(params, data) {
         data = data || {};
         return new Promise((resolve, reject) => {
+            const config = this._nb.getConfig()
             // Set key
-            data.key = this._nb.getConfig().apiKey;
+            data.key = config.apiKey;
+
+            if(config.apiVersion) {
+                data.api_version = config.apiVersion;
+            }
 
             // Encode params
             const query = JSON.stringify(data);
@@ -78,8 +83,8 @@ class HttpsClient {
             req.end();
 
             // Handle timeout
-            if (this._nb.getConfig().timeout) {
-                req.setTimeout(this._nb.getConfig().timeout, () => {
+            if (config.timeout) {
+                req.setTimeout(config.timeout, () => {
                     req.destroy();
                 });
             }
