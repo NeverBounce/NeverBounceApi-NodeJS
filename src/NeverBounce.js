@@ -82,7 +82,7 @@ class NeverBounce {
  * Default config values, these are overwritten when calling the constructor
  */
 NeverBounce.defaultConfig = {
-    apiVersion: null,
+    apiVersion: 'v4',
     apiKey: null,
     timeout: 30000,
     opts: {

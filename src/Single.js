@@ -28,7 +28,7 @@ class Single extends HttpsClient {
 
         return this.request({
             method: 'GET',
-            path: '/v4/single/check'
+            path: 'single/check'
         }, data).then(
             (resp) => Promise.resolve(new VerificationObject(resp)),
             (e) => Promise.reject(e)

@@ -12,7 +12,7 @@ class Jobs extends HttpsClient {
     search(query) {
         return this.request({
             method: 'GET',
-            path: '/v4/jobs/search'
+            path: 'jobs/search'
         }, query || {}).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
@@ -46,7 +46,7 @@ class Jobs extends HttpsClient {
 
         return this.request({
             method: 'POST',
-            path: '/v4/jobs/create'
+            path: 'jobs/create'
         }, data).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
@@ -62,7 +62,7 @@ class Jobs extends HttpsClient {
     parse(jobid, autostart) {
         return this.request({
             method: 'POST',
-            path: '/v4/jobs/parse'
+            path: 'jobs/parse'
         }, {
             'job_id': jobid,
             'auto_start': autostart || null,
@@ -76,23 +76,16 @@ class Jobs extends HttpsClient {
      * Starts job waiting to be started
      * @param jobid
      * @param runsample
-     * @param historicalData
      * @returns {Promise.<*>}
      */
-    start(jobid, runsample, historicalData) {
-        const data = {
-            'job_id': jobid,
-            'run_sample': runsample || null,
-        };
-
-        if(historicalData !== undefined) {
-            data.request_meta_data = { leverage_historical_data: historicalData ? 1 : 0 };
-        }
-
+    start(jobid, runsample) {
         return this.request({
             method: 'POST',
-            path: '/v4/jobs/start'
-        }, data).then(
+            path: 'jobs/start'
+        }, {
+            'job_id': jobid,
+            'run_sample': runsample || null,
+        }).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
         )
@@ -106,7 +99,7 @@ class Jobs extends HttpsClient {
     status(jobid) {
         return this.request({
             method: 'GET',
-            path: '/v4/jobs/status'
+            path: 'jobs/status'
         }, {
             'job_id': jobid,
         }).then(
@@ -124,7 +117,7 @@ class Jobs extends HttpsClient {
     results(jobid, query) {
         return this.request({
             method: 'GET',
-            path: '/v4/jobs/results'
+            path: 'jobs/results'
         },
         Object.assign({'job_id': jobid}, query || {})
         ).then(
@@ -143,7 +136,7 @@ class Jobs extends HttpsClient {
         return this.request({
             acceptedType: 'application/octet-stream',
             method: 'GET',
-            path: '/v4/jobs/download'
+            path: 'jobs/download'
         },
         Object.assign({'job_id': jobid}, query || {})
         ).then(
@@ -160,7 +153,7 @@ class Jobs extends HttpsClient {
     delete(jobid) {
         return this.request({
             method: 'POST',
-            path: '/v4/jobs/delete'
+            path: 'jobs/delete'
         }, {
             'job_id': jobid,
         }).then(

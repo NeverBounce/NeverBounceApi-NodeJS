@@ -12,7 +12,7 @@ class Account extends HttpsClient {
     info() {
         return this.request({
             method: 'GET',
-            path: '/v4/account/info'
+            path: 'account/info'
         }).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)

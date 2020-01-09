@@ -24,15 +24,14 @@ class HttpsClient {
             // Set key
             data.key = config.apiKey;
 
-            if(config.apiVersion) {
-                data.api_version = config.apiVersion;
-            }
-
             // Encode params
             const query = JSON.stringify(data);
 
             // Get request options
             const opts = this._nb.getRequestOpts(params);
+            if(opts.path) {
+                opts.path = `/${config.apiVersion}/${opts.path}`;
+            }
             opts.headers['User-Agent'] = 'NeverBounceApi-NodeJS/' + _Version;
             opts.headers['Content-Length'] = Buffer.byteLength(query);
 
