@@ -12,7 +12,7 @@ class Jobs extends HttpsClient {
     search(query) {
         return this.request({
             method: 'GET',
-            path: '/v4/jobs/search'
+            path: 'jobs/search'
         }, query || {}).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
@@ -27,20 +27,27 @@ class Jobs extends HttpsClient {
      * @param runsample
      * @param autoparse
      * @param autostart
+     * @param historicalData
      * @returns {Promise.<*>}
      */
-    create(input, inputlocation, filename, runsample, autoparse, autostart) {
-        return this.request({
-            method: 'POST',
-            path: '/v4/jobs/create'
-        }, {
+    create(input, inputlocation, filename, runsample, autoparse, autostart, historicalData) {
+        const data = {
             'input': input,
             'input_location': inputlocation,
             'filename': filename,
             'run_sample': runsample || null,
             'auto_start': autostart || null,
             'auto_parse': autoparse || null,
-        }).then(
+        };
+
+        if(historicalData !== undefined) {
+            data.request_meta_data = { leverage_historical_data: historicalData ? 1 : 0 };
+        }
+
+        return this.request({
+            method: 'POST',
+            path: 'jobs/create'
+        }, data).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
         )
@@ -55,7 +62,7 @@ class Jobs extends HttpsClient {
     parse(jobid, autostart) {
         return this.request({
             method: 'POST',
-            path: '/v4/jobs/parse'
+            path: 'jobs/parse'
         }, {
             'job_id': jobid,
             'auto_start': autostart || null,
@@ -74,7 +81,7 @@ class Jobs extends HttpsClient {
     start(jobid, runsample) {
         return this.request({
             method: 'POST',
-            path: '/v4/jobs/start'
+            path: 'jobs/start'
         }, {
             'job_id': jobid,
             'run_sample': runsample || null,
@@ -92,7 +99,7 @@ class Jobs extends HttpsClient {
     status(jobid) {
         return this.request({
             method: 'GET',
-            path: '/v4/jobs/status'
+            path: 'jobs/status'
         }, {
             'job_id': jobid,
         }).then(
@@ -110,7 +117,7 @@ class Jobs extends HttpsClient {
     results(jobid, query) {
         return this.request({
             method: 'GET',
-            path: '/v4/jobs/results'
+            path: 'jobs/results'
         },
         Object.assign({'job_id': jobid}, query || {})
         ).then(
@@ -129,7 +136,7 @@ class Jobs extends HttpsClient {
         return this.request({
             acceptedType: 'application/octet-stream',
             method: 'GET',
-            path: '/v4/jobs/download'
+            path: 'jobs/download'
         },
         Object.assign({'job_id': jobid}, query || {})
         ).then(
@@ -146,7 +153,7 @@ class Jobs extends HttpsClient {
     delete(jobid) {
         return this.request({
             method: 'POST',
-            path: '/v4/jobs/delete'
+            path: 'jobs/delete'
         }, {
             'job_id': jobid,
         }).then(

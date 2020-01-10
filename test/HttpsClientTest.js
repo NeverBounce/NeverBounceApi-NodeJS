@@ -21,7 +21,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.fulfilled
+        return http.request({path: 'test'}).should.be.fulfilled
             .then(
                 resp => resp.should.be.an('object').that.have.property('status')
             )
@@ -32,7 +32,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'text/plain'
         });
 
-        return http.request({path: '/v4/test', acceptedType: 'text/plain'}).should.be.fulfilled
+        return http.request({path: 'test', acceptedType: 'text/plain'}).should.be.fulfilled
             .then(
                 resp => resp.should.be.a('string').that.is.equal('Hello World!')
             )
@@ -43,7 +43,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'text/plain'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
@@ -54,7 +54,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'text/plain'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
@@ -65,7 +65,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
@@ -76,7 +76,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
@@ -87,7 +87,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.AuthError})
             )
@@ -98,7 +98,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )
@@ -109,7 +109,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.ThrottleError})
             )
@@ -120,7 +120,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.BadReferrerError})
             )
@@ -131,7 +131,7 @@ describe('HttpsClient', function() {
             'Content-Type': 'application/json'
         });
 
-        return http.request({path: '/v4/test'}).should.be.rejected
+        return http.request({path: 'test'}).should.be.rejected
             .then(
                 err => err.should.contain({'type': NeverBounce.errors.GeneralError})
             )

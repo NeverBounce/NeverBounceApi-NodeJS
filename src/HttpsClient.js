@@ -20,14 +20,18 @@ class HttpsClient {
     request(params, data) {
         data = data || {};
         return new Promise((resolve, reject) => {
+            const config = this._nb.getConfig()
             // Set key
-            data.key = this._nb.getConfig().apiKey;
+            data.key = config.apiKey;
 
             // Encode params
             const query = JSON.stringify(data);
 
             // Get request options
             const opts = this._nb.getRequestOpts(params);
+            if(opts.path) {
+                opts.path = `/${config.apiVersion}/${opts.path}`;
+            }
             opts.headers['User-Agent'] = 'NeverBounceApi-NodeJS/' + _Version;
             opts.headers['Content-Length'] = Buffer.byteLength(query);
 
@@ -78,8 +82,8 @@ class HttpsClient {
             req.end();
 
             // Handle timeout
-            if (this._nb.getConfig().timeout) {
-                req.setTimeout(this._nb.getConfig().timeout, () => {
+            if (config.timeout) {
+                req.setTimeout(config.timeout, () => {
                     req.destroy();
                 });
             }

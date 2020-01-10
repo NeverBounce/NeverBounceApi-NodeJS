@@ -15,7 +15,7 @@ class POE extends HttpsClient {
     confirm(email, result, confirmationToken, transactionId) {
         return this.request({
             method: 'POST',
-            path: '/v4/poe/confirm'
+            path: 'poe/confirm'
         }, {
             'email': email,
             'result': result,
