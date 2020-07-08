@@ -28,9 +28,12 @@ class Jobs extends HttpsClient {
      * @param autoparse
      * @param autostart
      * @param historicalData
+     * @param allowManualReview
+     * @param callbackUrl
+     * @param callbackHeaders
      * @returns {Promise.<*>}
      */
-    create(input, inputlocation, filename, runsample, autoparse, autostart, historicalData) {
+    create(input, inputlocation, filename, runsample, autoparse, autostart, historicalData, allowManualReview, callbackUrl, callbackHeaders) {
         const data = {
             'input': input,
             'input_location': inputlocation,
@@ -38,6 +41,9 @@ class Jobs extends HttpsClient {
             'run_sample': runsample || null,
             'auto_start': autostart || null,
             'auto_parse': autoparse || null,
+            'allow_manual_review': allowManualReview || null,
+            'callback_url' : callbackUrl || null,
+            'callback_headers': callbackHeaders || null,
         };
 
         if(historicalData !== undefined) {
@@ -76,15 +82,17 @@ class Jobs extends HttpsClient {
      * Starts job waiting to be started
      * @param jobid
      * @param runsample
+     * @param allowManualReview
      * @returns {Promise.<*>}
      */
-    start(jobid, runsample) {
+    start(jobid, runsample, allowManualReview) {
         return this.request({
             method: 'POST',
             path: 'jobs/start'
         }, {
             'job_id': jobid,
             'run_sample': runsample || null,
+            'allow_manual_review': allowManualReview || null,
         }).then(
             (resp) => Promise.resolve(resp),
             (e) => Promise.reject(e)
