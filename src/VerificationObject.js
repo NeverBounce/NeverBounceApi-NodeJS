@@ -94,7 +94,7 @@ VerificationObject.helpers = {
         role_account: 'role_account',
         disposable_email: 'disposable_email',
         government_host: 'government_host',
-        academic_host: 'acedemic_host', // API returns the misspelling, kept for backwards compat
+        academic_host: 'academic_host',
         military_host: 'military_host',
         international_host: 'international_host',
         squatter_host: 'squatter_host',

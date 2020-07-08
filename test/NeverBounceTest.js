@@ -104,7 +104,7 @@ describe('NeverBounce SDK', function () {
             });
 
             it('exposes verification result flag definitions', function() {
-                assert.equal(NeverBounce.result.flags.academic_host, 'acedemic_host'); // API returns misspelling, kept for backwards compat
+                assert.equal(NeverBounce.result.flags.academic_host, 'academic_host');
                 assert.containsAllKeys(NeverBounce.result.flags, [
                     'has_dns',
                     'has_dns_mx',
