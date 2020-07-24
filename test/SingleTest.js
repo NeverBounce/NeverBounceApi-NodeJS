@@ -9,7 +9,7 @@ chai.should();
 
 // Setup node request mock
 const scope = nock('https://api.neverbounce.com')
-    .get('/v4/single/check');
+    .get('/v4.2/single/check');
 
 // Create NeverBounce object
 const nb = new NeverBounce();
