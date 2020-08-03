@@ -16,7 +16,7 @@ const nb = new NeverBounce();
 describe('Jobs', function () {
     describe('search', function () {
         it('should return the response', function () {
-            scope.get('/v4/jobs/search').reply(200, {
+            scope.get('/v4.2/jobs/search').reply(200, {
                 'status': 'success',
                 'total_results': 1,
                 'total_pages': 1,
@@ -58,7 +58,7 @@ describe('Jobs', function () {
 
     describe('create', function () {
         it('should return the response', function () {
-            scope.post('/v4/jobs/create').reply(200, {
+            scope.post('/v4.2/jobs/create').reply(200, {
                 'status': 'success',
                 'job_id': 150970,
                 'execution_time': 388
@@ -71,7 +71,7 @@ describe('Jobs', function () {
 
     describe('parse', function () {
         it('should return the response', function () {
-            scope.post('/v4/jobs/parse').reply(200, {
+            scope.post('/v4.2/jobs/parse').reply(200, {
                 'status': 'success',
                 'queue_id': 'NB-PQ-59246392E9E5D',
                 'execution_time': 388
@@ -84,7 +84,7 @@ describe('Jobs', function () {
 
     describe('start', function () {
         it('should return the response', function () {
-            scope.post('/v4/jobs/start').reply(200, {
+            scope.post('/v4.2/jobs/start').reply(200, {
                 'status': 'success',
                 'queue_id': 'NB-PQ-59246392E9E5D',
                 'execution_time': 388
@@ -97,7 +97,7 @@ describe('Jobs', function () {
 
     describe('status', function () {
         it('should return the response', function () {
-            scope.get('/v4/jobs/status').reply(200, {
+            scope.get('/v4.2/jobs/status').reply(200, {
                 'status': 'success',
                 'id': 277461,
                 'filename': 'Created from Array.csv',
@@ -129,7 +129,7 @@ describe('Jobs', function () {
 
     describe('results', function () {
         it('should return the response', function () {
-            scope.get('/v4/jobs/results').reply(200, {
+            scope.get('/v4.2/jobs/results').reply(200, {
                 'status': 'success',
                 'total_results': 3,
                 'total_pages': 1,
@@ -233,7 +233,7 @@ describe('Jobs', function () {
 
     describe('download', function () {
         it('should return the response', function () {
-            scope.get('/v4/jobs/download').reply(
+            scope.get('/v4.2/jobs/download').reply(
                 200,
                 'id,email,name,email_status'
                     + '"12345","support@neverbounce.com","Fred McValid",valid'
@@ -249,7 +249,7 @@ describe('Jobs', function () {
 
     describe('delete', function () {
         it('should return the response', function () {
-            scope.post('/v4/jobs/delete').reply(200, {
+            scope.post('/v4.2/jobs/delete').reply(200, {
                 'status': 'success',
                 'execution_time': 388
             });

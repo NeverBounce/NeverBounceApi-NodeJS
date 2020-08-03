@@ -8,7 +8,7 @@ chai.should();
 
 // Setup node request mock
 const scope = nock('https://api.neverbounce.com')
-    .post('/v4/poe/confirm');
+    .post('/v4.2/poe/confirm');
 
 // Create NeverBounce object
 const nb = new NeverBounce();
