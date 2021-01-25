@@ -93,20 +93,6 @@ class HttpsClient {
     parseResponse(opts, chunks, headers, code) {
         return new Promise((resolve, reject) => {
 
-            if (headers['content-type'] !== opts.acceptedType) {
-                return reject(
-                    new _Error(
-                        _Error.GeneralError,
-                        'The response from NeverBounce was returned with the '
-                        + `type "${headers['content-type']}" but a response `
-                        + `type of "${opts.acceptedType}" was expected. Try the`
-                        + ' request again, if this error persists'
-                        + ' let us know at support@neverbounce.com.'
-                        + '\n\n(Internal error)'
-                    )
-                );
-            }
-
             if (headers['content-type'] === 'application/json') {
                 let decoded;
 
@@ -183,6 +169,20 @@ class HttpsClient {
                 }
 
                 return resolve(decoded);
+            }
+
+            if (headers['content-type'] !== opts.acceptedType) {
+                return reject(
+                    new _Error(
+                        _Error.GeneralError,
+                        'The response from NeverBounce was returned with the '
+                        + `type "${headers['content-type']}" but a response `
+                        + `type of "${opts.acceptedType}" was expected. Try the`
+                        + ' request again, if this error persists'
+                        + ' let us know at support@neverbounce.com.'
+                        + '\n\n(Internal error)'
+                    )
+                );
             }
 
             return resolve(chunks);
