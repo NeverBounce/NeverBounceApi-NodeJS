@@ -38,6 +38,17 @@ describe('HttpsClient', function() {
             )
     });
 
+    it('throws error when accepted content type isn\'t matched', function () {
+        scope.reply(200, 'Hello World!', {
+            'Content-Type': 'application/octet-stream'
+        });
+
+        return http.request({path: 'test', acceptedType: 'text/plain'}).should.be.rejected
+            .then(
+                err => err.should.contain({'type': NeverBounce.errors.GeneralError})
+            )
+    });
+
     it('rejects 4xx HTTP status codes', function () {
         scope.reply(404, 'Not Found', {
             'Content-Type': 'text/plain'
