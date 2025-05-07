@@ -1,19 +1,33 @@
 {
   "name": "neverbounce",
-  "version": "4.4.1",
+  "version": "5.0.0",
   "description": "An API wrapper for the NeverBounce API",
   "engines": {
-    "node": ">=8.0"
+    "node": ">=20.0.0"
   },
-  "main": "src/NeverBounce.js",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
   },
   "scripts": {
-    "test": "mocha",
-    "lint": "./node_modules/.bin/eslint ./src/*",
-    "lint:fix": "./node_modules/.bin/eslint ./src/* --fix"
+    "build": "tsc",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "prepublishOnly": "npm run build",
+    "example": "tsx"
   },
   "keywords": [
     "email",
@@ -26,18 +40,22 @@
   ],
   "author": "NeverBounce <support@neverbounce.com> (https://neverbounce.com)",
   "contributors": [
-    "Mike Mollick <mike@neverbounce.com>"
+    "Mike Mollick <mike@neverbounce.com>",
+    "Omri Katz <omri.katz@zoominfo.com>"
   ],
   "homepage": "https://neverbounce.com",
   "license": "MIT",
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-as-promised": "^7.1.1",
-    "eslint": "^5.10.0",
-    "mocha": "^5.2.0",
-    "nock": "^10.0.4"
+    "@types/node": "^20.17.41",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "chai": "^4.3.10",
+    "eslint": "^8.56.0",
+    "nock": "^13.4.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
-    "lodash.merge": "^4.6.1"
+    "dotenv": "^16.5.0"
   }
 }
