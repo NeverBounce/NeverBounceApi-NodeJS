@@ -28,7 +28,7 @@
     "lint:fix": "eslint src/**/*.ts --fix",
     "prepublishOnly": "npm run build",
     "example": "tsx",
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.cjs",
     "test:watch": "jest --watch"
   },
   "keywords": [
