@@ -25,5 +25,24 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Check Node.js version
+      run: node --version
+    - name: Check npm version
+      run: npm --version
     - run: npm ci
-    - run: npm test
+    - name: Install Jest globally
+      run: npm install -g jest
+    - name: Reinstall dependencies
+      run: npm install --no-save
+    - name: Install Jest locally
+      run: npm install jest
+    - name: Debug node_modules
+      run: ls -la node_modules
+    - name: Verify Jest installation
+      run: ls -la node_modules/jest/bin/
+    - name: Check Jest binary
+      run: node node_modules/jest/bin/jest.js --version
+    - name: Check Jest version
+      run: npx jest --version
+    - name: Run tests
+      run: node --experimental-vm-modules node_modules/jest/bin/jest.js
