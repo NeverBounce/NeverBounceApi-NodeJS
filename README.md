@@ -9,7 +9,7 @@
 
 > Looking for the V4 API wrapper with JavaScript? Check out version 4.x.x.
 
-This is the official NeverBounce API NodeJS wrapper. It provides helpful methods to quickly implement our API in your NodeJS applications. Version 5.0.0 has been completely rewritten in TypeScript and requires Node.js 20 or higher.
+This is the official NeverBounce API NodeJS wrapper. It provides helpful methods to quickly implement our API in your NodeJS applications. Version 5.0.0 has been completely rewritten in TypeScript and requires Node.js 20 or higher
 
 **This package is not suitable for use in the browser! Only use it in server side applications!**
 
