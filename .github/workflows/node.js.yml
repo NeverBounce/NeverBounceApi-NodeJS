@@ -32,10 +32,10 @@ jobs:
     - run: npm ci
     - name: Install Jest globally
       run: npm install -g jest
+    - name: Clean node_modules
+      run: rm -rf node_modules
     - name: Reinstall dependencies
-      run: npm install --no-save
-    - name: Install Jest locally
-      run: npm install jest
+      run: npm ci
     - name: Debug node_modules
       run: ls -la node_modules
     - name: Verify Jest installation
