@@ -1,9 +1,7 @@
-import { ErrorType } from './types.js';
-
 // Add Node.js specific Error interface extension
 declare global {
   interface ErrorConstructor {
-    captureStackTrace?(targetObject: object, constructorOpt?: Function): void;
+    captureStackTrace?(targetObject: object, constructorOpt?: new (...args: any[]) => any): void;
   }
 }
 

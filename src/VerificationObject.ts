@@ -1,4 +1,4 @@
-import { SingleVerificationResponse, VerificationFlags, VerificationResult } from './types.js';
+import { SingleVerificationResponse, VerificationFlags } from './types.js';
 
 /**
  * Verification Object class for handling verification results

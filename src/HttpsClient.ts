@@ -63,7 +63,6 @@ class HttpsClient {
     // Set up AbortController for timeout
     const controller = new AbortController();
     if (config.timeout) {
-      const timeoutId = setTimeout(() => controller.abort(), config.timeout);
       fetchOptions.signal = controller.signal;
     }
 
