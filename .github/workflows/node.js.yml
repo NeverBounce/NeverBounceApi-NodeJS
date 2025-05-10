@@ -31,4 +31,4 @@ jobs:
         run: npm install ts-jest@29.1.1 jest@29.7.0 @types/jest typescript
         
       - name: Run tests with Jest
-        run: NODE_OPTIONS=--experimental-vm-modules npx ts-jest config:migrate jest.config.js && NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.js
+        run: NODE_OPTIONS=--experimental-vm-modules npx ts-jest config:migrate jest.config.cjs && NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.cjs
