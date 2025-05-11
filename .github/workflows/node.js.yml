@@ -28,7 +28,7 @@ jobs:
         run: npm ci
 
       - name: Install Jest and ts-jest explicitly
-        run: npm install -g jest ts-jest
+        run: npm install jest ts-jest
 
       - name: Run tests
-        run: NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.cjs
+        run: NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.cjs
