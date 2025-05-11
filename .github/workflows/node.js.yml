@@ -24,11 +24,33 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
+      - name: Check Node.js version and environment (debug)
+        run: |
+          node --version
+          npm --version
+          echo "NODE_OPTIONS=$NODE_OPTIONS"
+
+      - name: List directory contents (debug)
+        run: ls -la
+
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Jest and ts-jest explicitly
-        run: npm install jest ts-jest
+      - name: List installed packages (debug)
+        run: npm list --depth=0
 
-      - name: Run tests
-        run: NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.cjs
+      - name: Check Jest configuration file (debug)
+        run: cat jest.config.cjs
+
+      - name: Check package.json test script (debug)
+        run: cat package.json | grep -A 3 '"scripts"'
+
+      - name: Install Jest and ts-jest explicitly
+        run: npm install jest ts-jest @types/jest
+
+      - name: Run tests using npm script
+        run: NODE_OPTIONS=--experimental-vm-modules npm test -- --verbose
+        
+      - name: Run Jest directly (fallback)
+        if: ${{ failure() }}
+        run: NODE_OPTIONS=--experimental-vm-modules npx jest --config=jest.config.cjs --verbose
