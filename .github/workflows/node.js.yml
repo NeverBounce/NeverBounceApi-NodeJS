@@ -46,7 +46,7 @@ jobs:
         run: cat package.json | grep -A 3 '"scripts"'
 
       - name: Install Jest and ts-jest explicitly
-        run: npm install jest ts-jest @types/jest
+        run: npm install jest@29.7.0 ts-jest@29.1.1 @types/jest
 
       - name: Run tests using npm script
         run: NODE_OPTIONS=--experimental-vm-modules npm test -- --verbose
