@@ -24,20 +24,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Check Node.js version and environment (debug)
-        run: |
-          node --version
-          npm --version
-          echo "NODE_OPTIONS=$NODE_OPTIONS"
-
-      - name: List directory contents (debug)
-        run: ls -la
-
       - name: Install dependencies
         run: npm ci
-
-      - name: List installed packages (debug)
-        run: npm list --depth=0
 
       - name: Check Jest configuration file (debug)
         run: cat jest.config.cjs
