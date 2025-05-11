@@ -15,7 +15,7 @@ This is the official NeverBounce API NodeJS wrapper. It provides helpful methods
 
 ## Breaking Changes in 5.0.0
 
-- Requires Node.js 20 or higher
+- Requires Node.js 18 or higher
 - Converted to TypeScript with full type definitions
 - Uses ES Modules instead of CommonJS
 - Uses modern fetch API instead of https module
