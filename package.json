@@ -1,6 +1,6 @@
 {
   "name": "neverbounce",
-  "version": "5.0.4",
+  "version": "5.0.5",
   "description": "An API wrapper for the NeverBounce API",
   "engines": {
     "node": ">=18.0.0"
@@ -28,7 +28,7 @@
     "build": "npm run build:esm && npm run build:cjs && npm run build:package",
     "build:esm": "tsc -p tsconfig.json",
     "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:package": "mkdir -p dist && cp 'package.json' 'README.md' dist/ && cp dist/cjs/package.json dist/cjs/",
+    "build:package": "mkdir -p dist/cjs && echo '{\"type\": \"commonjs\"}' > dist/cjs/package.json && cp 'package.json' 'README.md' dist/",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "prepublishOnly": "npm run build",
