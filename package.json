@@ -1,30 +1,34 @@
 {
   "name": "neverbounce",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "description": "An API wrapper for the NeverBounce API",
   "engines": {
     "node": ">=18.0.0"
   },
   "type": "module",
-  "main": "dist/src/index.js",
-  "module": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/cjs/src/index.js",
+  "module": "dist/esm/src/index.js",
+  "types": "dist/esm/src/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/src/index.js",
-      "require": "./dist/src/index.js",
-      "types": "./dist/src/index.d.ts"
+      "import": "./dist/esm/src/index.js",
+      "require": "./dist/cjs/src/index.js",
+      "types": "./dist/esm/src/index.d.ts"
     }
   },
   "files": [
-    "dist"
+    "dist/esm",
+    "dist/cjs"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/NeverBounce/NeverBounceApi-NodeJS"
   },
   "scripts": {
-    "build": "tsc && cp 'package.json' 'README.md' dist",
+    "build": "npm run build:esm && npm run build:cjs && npm run build:package",
+    "build:esm": "tsc -p tsconfig.json",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:package": "mkdir -p dist && cp 'package.json' 'README.md' dist/ && cp dist/cjs/package.json dist/cjs/",
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "prepublishOnly": "npm run build",
